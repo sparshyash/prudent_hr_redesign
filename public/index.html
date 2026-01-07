@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PrudentHR is a strategic HR consulting firm providing recruitment, compliance, training and HR technology solutions for growing businesses.">
+<meta name="keywords" content="HR consultancy, recruitment, HR compliance, training, HR consulting India">
+<meta name="author" content="PrudentHR">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta property="og:title" content="PrudentHR – Strategic HR Consulting">
+<meta property="og:description" content="Recruitment, HR Compliance & Consulting for Growing Businesses">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.prudenthr.in">
+
+
+    <title>PrudentHR - Strategic HR Consulting Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://dl.dropboxusercontent.com/scl/fi/iqmpc484yp2y5s1iipbof/Screenshot-2025-03-03-232149.png?rlkey=gczowr4g7vem3srs12rlzy8to">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 20px auto;
+        }
+        
+
+        .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: none;
+}
+
+
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .hero-btns .btn {
+            padding: 15px 35px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h4 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .service-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .stat-text {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: var(--light-color);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .client-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid var(--secondary-color);
+        }
+        
+        .client-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .client-quote {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .client-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .client-position {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-dot.active {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .info-icon {
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .info-text h4 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .info-text p, .info-text a {
+            color: var(--text-light);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 70px 0 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h4 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-contact span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-text {
+                flex: none;
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                
+                <img src="https://dl.dropboxusercontent.com/scl/fi/1qi9htm8yezski7ihs34q/Screenshot-2025-03-03-204508.png?rlkey=is8rgvexy7ex3h62mqtn5t3j6" alt="PrudentHR Logo" loading="lazy">
+                <h1>Prudent<span>HR</span></h1>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Strategic HR Solutions for Business Growth</h1>
+                <p>PrudentHR delivers expert human resource consulting to help your organization attract, develop, and retain top talent in today's competitive market.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn">Get Started</a>
+                    <a href="#services" class="btn btn-outline">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background:#fff;padding:30px 0;text-align:center">
+  <p style="opacity:0.7">
+    Trusted by growing businesses across India • HR Compliance • Recruitment • Advisory
+  </p>
+</section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About PrudentHR</h2>
+                <p>We are a team of experienced HR professionals dedicated to helping businesses optimize their human capital and create productive work environments.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="PrudentHR Team" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <h3>Your Trusted HR Partner</h3>
+                    <p>Founded in 2010, PrudentHR has been at the forefront of providing comprehensive human resource solutions to businesses of all sizes across various industries.</p>
+                    <p>Our approach combines industry best practices with innovative strategies tailored to your organization's unique needs and culture.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Mission</h4>
+                                <p>To empower organizations through strategic HR solutions that drive growth and employee satisfaction.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Vision</h4>
+                                <p>To be the most trusted HR consultancy firm recognized for transforming workplaces.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Results</h4>
+                                <p>Proven track record of improving retention, productivity, and organizational culture.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer a comprehensive range of HR services designed to address all your human resource needs.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Talent Acquisition" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>Talent Acquisition</h3>
+                        <p>Comprehensive recruitment solutions to attract and hire top talent that aligns with your company's values and goals.</p>
+                        <a href="#contact"
+   class="service-link"
+   data-service="Talent Acquisition">
+   Learn More <i class="fas fa-arrow-right"></i>
+</a>
+
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Training & Development" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>Training & Development</h3>
+                        <p>Customized training programs to enhance employee skills, leadership capabilities, and organizational performance.</p>
+                        <a href="#contact"
+   class="service-link"
+   data-service="Talent Acquisition">
+   Learn More <i class="fas fa-arrow-right"></i>
+</a>
+
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Compensation & Benefits" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>Compensation & Benefits</h3>
+                        <p>Strategic compensation planning and benefits administration to attract and retain valuable employees.</p>
+                        <a href="#contact"
+   class="service-link"
+   data-service="Talent Acquisition">
+   Learn More <i class="fas fa-arrow-right"></i>
+</a>
+
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="HR Compliance" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>HR Compliance</h3>
+                        <p>Ensure your organization meets all legal requirements and maintains best practices in HR policies and procedures.</p>
+                        <a href="#contact"
+   class="service-link"
+   data-service="Talent Acquisition">
+   Learn More <i class="fas fa-arrow-right"></i>
+</a>
+
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Performance Management" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>Performance Management</h3>
+                        <p>Implement effective performance evaluation systems that drive employee engagement and productivity.</p>
+                        <a href="#contact"
+   class="service-link"
+   data-service="Talent Acquisition">
+   Learn More <i class="fas fa-arrow-right"></i>
+</a>
+
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="HR Technology" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>HR Technology</h3>
+                        <p>Leverage cutting-edge HR software solutions to streamline processes and enhance decision-making.</p>
+                        <a href="#contact"
+   class="service-link"
+   data-service="Talent Acquisition">
+   Learn More <i class="fas fa-arrow-right"></i>
+</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="250">1000+</div>
+                    <div class="stat-text">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="500">70+</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="50">10+</div>
+                    <div class="stat-text">Expert Consultants</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="15">10+</div>
+                    <div class="stat-text">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>Hear what our clients say about working with PrudentHR and the impact we've made on their organizations.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="client-img">
+                        <img src="images/gettyimages-1135381120-612x612.jpg" alt="testimonial1">
+                    </div>
+                    <p class="client-quote">"PrudentHR transformed our recruitment process, helping us reduce time-to-hire by 40% while improving the quality of candidates. Their expertise was invaluable in scaling our team."</p>
+                    <h4 class="client-name">Muskan Sisodia</h4>
+                    <p class="client-position">CEO, TechSolutions Inc.</p>
+                </div>
+                <div class="testimonial">
+                    <div class="client-img">
+                        <img src="images/gettyimages-1135381173-612x612.jpg" alt="Michael Chen">
+                    </div>
+                    <p class="client-quote">"The compensation strategy developed by PrudentHR helped us retain our top performers while staying competitive in the market. Their data-driven approach made all the difference."</p>
+                    <h4 class="client-name">Arnav</h4>
+                    <p class="client-position">HR Director, Global Finance Corp</p>
+                </div>
+                <div class="testimonial">
+                    <div class="client-img">
+                        <img src="images/download.jpg" alt="Lisa Rodriguez">
+                    </div>
+                    <p class="client-quote">"Working with PrudentHR on our leadership development program was a game-changer. Our management team is more aligned and effective than ever before."</p>
+                    <h4 class="client-name">Ashish Jain</h4>
+                    <p class="client-position">COO, Jain Steels</p>
+                </div>
+                <div class="testimonial-nav">
+                    <div class="testimonial-dot active" data-slide="0"></div>
+                    <div class="testimonial-dot" data-slide="1"></div>
+                    <div class="testimonial-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+  <div class="container">
+    <div class="section-title">
+      <h2>Get In Touch</h2>
+      <p>
+        Ready to transform your HR function? Contact us today to discuss how we
+        can support your organization's growth and success.
+      </p>
+    </div>
+
+    <div class="contact-container">
+      <!-- CONTACT INFO -->
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="info-text">
+            <h4>Location</h4>
+            <p>HW 01, Sector 70 <br />Noida - U.P - 201301</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="info-text">
+            <h4>Email</h4>
+            <a href="mailto:prudenthr001@gmail.com">prudenthr001@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="info-text">
+            <h4>Phone</h4>
+            <a href="tel:+919258028289">+91 92580 28289</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="info-text">
+            <h4>Working Hours</h4>
+            <p>
+              Monday - Friday: 9:00 AM - 6:00 PM<br />
+              Saturday - Sunday: Closed
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-form">
+        <h3>Request a Free HR Consultation</h3>
+
+        <form
+          id="contactForm"
+          action="https://formsubmit.co/prudenthr001@gmail.com"
+          method="POST"
+        >
+          <!-- FORMSUBMIT SETTINGS -->
+          <input type="text" name="company" style="display:none">
+
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://prudenthr.in/thank-you.html"
+          />
+
+          <div class="form-group">
+            <label>Your Name</label>
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              placeholder="Your Name"
+              aria-label="Your Name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Your Email</label>
+            <input
+              type="email"
+              name="email"
+              class="form-control"
+              placeholder="Your Email"
+              aria-label="Your Email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Your Phone</label>
+  <input type="tel" name="phone" class="form-control" placeholder="Your Phone">
+  <small class="error-text" style="color:#ef4444;display:none"></small>
+          </div>
+
+          <div class="form-group">
+            <label>Select Service</label>
+            <select name="service" class="form-control" required>
+              <option value="">Select Service</option>
+              <option>Talent Acquisition</option>
+              <option>Training & Development</option>
+              <option>Compensation & Benefits</option>
+              <option>HR Compliance & Payroll</option>
+              <option>HR Consulting & Advisory</option>
+              <option>Other / Custom Requirement</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Your Message</label>
+            <textarea
+              name="message"
+              class="form-control"
+              placeholder="Briefly describe your requirement"
+              required
+            ></textarea>
+            <small style="opacity: 0.6; display: block; margin-top: 6px">
+              🔒 Your information is 100% confidential. No spam, ever.
+            </small>
+          </div>
+
+          <button type="submit" class="btn" id="submitBtn">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>About PrudentHR</h4>
+                    <p>PrudentHR is a leading human resource consulting firm dedicated to helping businesses optimize their workforce and achieve sustainable growth.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/prudenthrconsultancy/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="admin_login.html" style="opacity:0.4;font-size:12px">
+  Admin Login
+</a>
+</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Talent Acquisition</a></li>
+                        <li><a href="#">Training & Development</a></li>
+                        <li><a href="#">Compensation & Benefits</a></li>
+                        <li><a href="#">HR Compliance</a></li>
+                        <li><a href="#">Performance Management</a></li>
+                        <li><a href="#">HR Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>HW 01, Sector 70  <br> Noida - U.P -201301</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>Prudent_hr@outlook.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+91 9258028289</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 PrudentHR. All Rights Reserved.</p>
+            </div>
+        </div>
+<p style="margin-top:8px;font-size:12px;opacity:0.7">
+  Developed & Maintained by 
+  <a href="https://www.linkedin.com/in/sparsh-garg-733113209" target="_blank" style="color:#3498db;">
+    Prudent Tech
+  </a>
+</p>
+
+
+
+    </footer>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// 🔥 Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyDwUE02BSa94E9DqgqvXuG_g2itD2ZbkZk",
+  authDomain: "prudenthr-eeeba.firebaseapp.com",
+  projectId: "prudenthr-eeeba"
+};
+
+// 🔥 Init Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 📩 Form Elements
+const form = document.getElementById("contactForm");
+const btn = form.querySelector("button");
+const phoneInput = form.querySelector("input[name='phone']");
+const phoneError = phoneInput.nextElementSibling;
+
+// 🚀 Submit Handler
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (form.company.value) return;
+
+
+  const phone = phoneInput.value.trim();
+  if (phone && !/^[6-9]\d{9}$/.test(phone)) {
+    phoneError.innerText = "Enter a valid 10-digit Indian mobile number";
+    phoneError.style.display = "block";
+    return;
+  } else {
+    phoneError.style.display = "none";
+  }
+
+  // Button UI
+  btn.innerText = "Sending...";
+  btn.disabled = true;
+
+  try {
+    // 1️⃣ Save Lead to Firestore
+    await addDoc(collection(db, "leads"), {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      service: form.service.value,
+      message: form.message.value.trim(),
+      status: "New",
+      source: "Website",
+      createdAt: serverTimestamp()
+    });
+
+    // 2️⃣ Send Email via FormSubmit (non-blocking)
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form)
+    }).catch(err => console.warn("FormSubmit error:", err));
+
+    // 3️⃣ Redirect to Thank You Page
+    window.location.href = "https://prudenthr.in/thank-you.html";
+
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Something went wrong. Please try again.");
+
+    // Reset button if error
+    btn.innerText = "Send Message";
+    btn.disabled = false;
+  }
+});
+
+document.querySelectorAll(".service-link").forEach(link => {
+    link.addEventListener("click", () => {
+      const service = link.getAttribute("data-service");
+
+      // Delay to ensure contact section loads
+      setTimeout(() => {
+        const serviceSelect = document.querySelector(
+          "#contactForm select[name='service']"
+        );
+        if (serviceSelect) {
+          serviceSelect.value = service;
+        }
+      }, 300);
+    });
+  });
+</script>
+
+</body>
+</html>

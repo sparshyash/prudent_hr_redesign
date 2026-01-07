@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PrudentHR Admin Dashboard</title>
+  <style>
+    body { font-family: Arial; background: #f4f6f8; padding: 30px; }
+    table { width: 100%; background: #fff; border-collapse: collapse; }
+    th, td { padding: 12px; border-bottom: 1px solid #ddd; }
+    th { background: #3498db; color: white; }
+    tr:hover { background: #f1f1f1; }
+  </style>
+</head>
+<body>
+
+<h2>📩 Contact Messages</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Service</th>
+      <th>Message</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody id="messages"></tbody>
+</table>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = { /* SAME CONFIG */ };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const tbody = document.getElementById("messages");
+
+const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
+
+onSnapshot(q, (snapshot) => {
+  tbody.innerHTML = "";
+  snapshot.forEach(doc => {
+    const d = doc.data();
+    tbody.innerHTML += `
+      <tr>
+        <td>${d.name}</td>
+        <td>${d.email}</td>
+        <td>${d.phone || "-"}</td>
+        <td>${d.service || "-"}</td>
+        <td>${d.message}</td>
+        <td>${d.createdAt?.toDate().toLocaleString() || ""}</td>
+      </tr>
+    `;
+  });
+});
+</script>
+
+</body>
+</html>
