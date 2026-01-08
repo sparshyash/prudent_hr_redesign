@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HR Saathi – HR News, Compliance & Workplace Insights</title>
+
+  <meta name="description" content="HR Saathi delivers practical HR news, labour law updates, recruitment trends and people leadership insights for Indian workplaces." />
+  <meta name="keywords" content="HR news India, HR compliance, labour laws, recruitment trends, HR blog" />
+  <meta name="author" content="Prudent HR" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HR Saathi – Practical HR Insights for Real Workplaces" />
+  <meta property="og:description" content="Clear HR thinking. No jargon. No fluff." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://prudenthr.in/og-image.jpg" />
+  <meta property="og:url" content="https://prudenthr.in/hr-saathi.html" />
+
+  <link rel="canonical" href="https://prudenthr.in/hr-saathi.html" />
+
+<style>
+:root {
+  --primary:#2563eb;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{background:var(--bg);color:var(--text);line-height:1.65}
+.container{max-width:1100px;margin:auto;padding:0 20px}
+
+/* NAVBAR */
+.navbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #e5e7eb
+}
+.nav-container{
+  height:64px;display:flex;
+  align-items:center;justify-content:space-between
+}
+.logo{font-size:20px;font-weight:800}
+.logo span{color:var(--primary)}
+.nav-actions a{
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:600;
+  color:var(--muted)
+}
+.nav-actions a.primary{
+  background:var(--primary);
+  color:white;
+  padding:8px 16px;
+  border-radius:999px
+}
+
+/* HERO */
+.hero{padding:90px 0 60px}
+.hero-content{max-width:760px}
+.badge{
+  font-size:12px;
+  letter-spacing:.12em;
+  font-weight:700;
+  color:var(--primary);
+  text-transform:uppercase
+}
+.hero h1{
+  font-size:clamp(2.2rem,4vw,3rem);
+  margin:16px 0;
+  line-height:1.25
+}
+.hero p{color:var(--muted);font-size:1.1rem}
+
+/* SECTION */
+.section{padding:60px 0}
+.section h2{font-size:1.8rem;margin-bottom:8px}
+.section p{color:var(--muted);margin-bottom:30px}
+
+/* ARTICLES */
+.articles{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px
+}
+.article-card{
+  background:var(--card);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.3s;
+  cursor:pointer
+}
+.article-card:hover{transform:translateY(-6px)}
+.article-card img{
+  width:100%;height:200px;object-fit:cover
+}
+.article-content{padding:22px}
+.category{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--primary)
+}
+.article-title{
+  font-size:1.25rem;
+  margin:10px 0
+}
+.article-excerpt{color:var(--muted)}
+.article-footer{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+  font-size:13px;
+  color:var(--muted)
+}
+
+/* NEWSLETTER */
+.newsletter{
+  background:linear-gradient(135deg,#2563eb,#0b5ed7);
+  color:white;
+  padding:70px 20px;
+  text-align:center
+}
+.newsletter p{
+  max-width:520px;
+  margin:10px auto 25px;
+  opacity:.95
+}
+.newsletter a{
+  display:inline-block;
+  background:white;
+  color:#0b5ed7;
+  padding:12px 26px;
+  border-radius:999px;
+  font-weight:800;
+  text-decoration:none
+}
+
+/* FOOTER */
+footer{
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px
+}
+
+/* FOOTER */
+.footer {
+  background: #020617;
+  color: #cbd5f5;
+  padding: 70px 0 0;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 50px;
+}
+
+.footer-brand h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+}
+
+.footer-brand h3 span {
+  color: var(--primary);
+}
+
+.footer-brand p {
+  margin: 15px 0 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #94a3b8;
+}
+
+.footer-cta {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links h4,
+.footer-trust h4 {
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-links a {
+  display: block;
+  color: #94a3b8;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-trust p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+.trust-badges span {
+  display: inline-block;
+  background: rgba(255,255,255,.06);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin: 5px 5px 0 0;
+}
+
+.footer-bottom {
+  margin-top: 60px;
+  padding: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">HR<span>Saathi</span></div>
+    <div class="nav-actions">
+      <a href="#latest">Latest</a>
+      <a href="#topics">Topics</a>
+      <a href="WHATSAPP_LINK_HERE" target="_blank" class="primary">Join WhatsApp</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero container">
+  <div class="hero-content">
+    <span class="badge">HR Saathi • India</span>
+    <h1>Practical HR insights, labour updates & people leadership — written for real workplaces</h1>
+    <p>No jargon. No fluff. Just clear HR thinking you can apply today.</p>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="section container" id="latest">
+  <h2>Latest Insights</h2>
+  <p>Curated HR news and workplace thinking.</p>
+
+  <div class="articles">
+    <article class="article-card">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800">
+      <div class="article-content">
+        <span class="category">HR Trends</span>
+        <h3 class="article-title">Future of Remote Work in India</h3>
+        <p class="article-excerpt">How hybrid work is reshaping HR policies, performance management and engagement.</p>
+        <div class="article-footer">
+          <span>HR Saathi</span>
+          <span>Jan 5, 2024 • 5 min read</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="article-card">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800">
+      <div class="article-content">
+        <span class="category">Recruitment</span>
+        <h3 class="article-title">AI in Recruitment: What HR Must Control</h3>
+        <p class="article-excerpt">Automation is powerful — but fairness, bias and human judgment still matter.</p>
+        <div class="article-footer">
+          <span>HR Saathi</span>
+          <span>Jan 4, 2024 • 4 min read</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- WHATSAPP CTA -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <h3>HR<span>Saathi</span></h3>
+      <p>
+        Practical HR insights, labour updates & people leadership guidance
+        — built for Indian workplaces.
+      </p>
+
+      <a href="https://whatsapp.com/channel/0029VaXXXXXXX"
+   target="_blank"
+   rel="noopener"
+   onclick="trackWhatsApp()"
+   class="footer-cta">
+   Join WhatsApp Channel →
+</a>
+
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="#">Latest Insights</a>
+      <a href="#">HR News</a>
+      <a href="#">HR Compliance</a>
+      <a href="#">People Management</a>
+    </div>
+
+    <!-- Company -->
+    <div class="footer-links">
+      <h4>Prudent HR</h4>
+      <a href="#">About Us</a>
+      <a href="#">Consulting Services</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+
+    <!-- Trust -->
+    <div class="footer-trust">
+      <h4>Built for Professionals</h4>
+      <p>Trusted by founders, HR leaders & people managers across India.</p>
+
+      <div class="trust-badges">
+        <span>✔ Practical</span>
+        <span>✔ No Jargon</span>
+        <span>✔ India-focused</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    © 2024 Prudent HR Consulting Pvt. Ltd. · All rights reserved
+  </div>
+</footer>
+
+
+</body>
+</html>
+
+
+<script>
+const data = [
+  {
+    title: "Future of Remote Work",
+    category: "HR Trends",
+    excerpt: "How hybrid work is reshaping HR policies.",
+    content: "Remote work is redefining HR policies across India. Hybrid models, flexible hours, and outcome-based performance are becoming the norm.",
+    meta: "Jan 5, 2024 • 5 min read",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800"
+  },
+  {
+    title: "AI in Recruitment",
+    category: "Recruitment",
+    excerpt: "Balancing automation with human judgment.",
+    content: "AI tools are accelerating hiring, but HR leaders must ensure fairness, transparency and empathy remain central.",
+    meta: "Jan 4, 2024 • 4 min read",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800"
+  }
+];
+
+const container = document.getElementById("articles");
+const modal = document.getElementById("modal");
+
+data.forEach((a, i) => {
+  container.innerHTML += `
+    <article class="article-card" onclick="openArticle(${i})">
+      <img src="${a.image}">
+      <div class="article-content">
+        <span class="category">${a.category}</span>
+        <h3 class="article-title">${a.title}</h3>
+        <p class="article-excerpt">${a.excerpt}</p>
+        <div class="article-footer">
+          <span>HR Saathi</span>
+          <span>${a.meta}</span>
+        </div>
+      </div>
+    </article>
+  `;
+});
+
+function openArticle(i) {
+  modal.style.display = "flex";
+  document.getElementById("modalTitle").innerText = data[i].title;
+  document.getElementById("modalMeta").innerText = data[i].meta;
+  document.getElementById("modalContent").innerText = data[i].content;
+}
+
+function trackWhatsApp() {
+  console.log("WhatsApp Join Clicked");
+  // Later connect to GA / Meta Pixel
+}
+
+function closeArticle() {
+  modal.style.display = "none";
+}
+</script>
+
+</body>
+</html>
