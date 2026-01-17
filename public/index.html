@@ -1048,7 +1048,7 @@
             <div class="testimonials-slider">
                 <div class="testimonial active">
                     <div class="client-img">
-                        <img src="images/t1.jpeg" alt="testimonial1">
+                        <img src="images/t1.jpeg" alt="Smriti Gupta">
                     </div>
                     <p class="client-quote">"Prudent HR Consultancy has been a dependable partner in managing our HR and compliance needs across locations. Their practical approach and quick turnaround make them stand out in the industry"</p>
                     <h4 class="client-name">Smriti Gupta</h4>
@@ -1056,19 +1056,19 @@
                 </div>
                 <div class="testimonial">
                     <div class="client-img">
-                        <img src="images/gettyimages-1135381173-612x612.jpg" alt="Michael Chen">
+                        <img src="images/t2.jpeg" alt="Rohit Khera">
                     </div>
-                    <p class="client-quote">"The compensation strategy developed by PrudentHR helped us retain our top performers while staying competitive in the market. Their data-driven approach made all the difference."</p>
-                    <h4 class="client-name">Arnav</h4>
-                    <p class="client-position">HR Director, Global Finance Corp</p>
+                    <p class="client-quote">“A highly responsive and knowledgeable HR consulting team. Prudent HR Consultancy has added real value to our organization through seamless HR processes and expert guidance.”</p>
+                    <h4 class="client-name">Rohit Khera</h4>
+                    <p class="client-position">Sr. Vice President , Swastic Arenmatics Ltd</p>
                 </div>
                 <div class="testimonial">
                     <div class="client-img">
-                        <img src="images/download.jpg" alt="Lisa Rodriguez">
+                        <img src="images/t3.jpeg" alt="Yogesh Rawat">
                     </div>
-                    <p class="client-quote">"Working with PrudentHR on our leadership development program was a game-changer. Our management team is more aligned and effective than ever before."</p>
-                    <h4 class="client-name">Ashish Jain</h4>
-                    <p class="client-position">COO, Jain Steels</p>
+                    <p class="client-quote">"With Prudent HR Consultancy, we gained confidence in our HR systems and labour law compliance. A reliable partner for any growing organization in India.”"</p>
+                    <h4 class="client-name">Yogesh Rawat</h4>
+                    <p class="client-position">CPO ,Vardhman Industries Pvt Ltd</p>
                 </div>
                 <div class="testimonial-nav">
                     <div class="testimonial-dot active" data-slide="0"></div>
@@ -1233,8 +1233,8 @@
                     <p>PrudentHR is a leading human resource consulting firm dedicated to helping businesses optimize their workforce and achieve sustainable growth.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/company/prudenthr-consultancy"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.instagram.com/prudenthrconsultancy/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
@@ -1392,6 +1392,55 @@ document.querySelectorAll(".service-link").forEach(link => {
     });
   });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const testimonials = document.querySelectorAll(".testimonial");
+  const dots = document.querySelectorAll(".testimonial-dot");
+
+  let currentIndex = 0;
+  let interval;
+
+  function showTestimonial(index) {
+    testimonials.forEach((t, i) => {
+      t.classList.toggle("active", i === index);
+    });
+
+    dots.forEach((d, i) => {
+      d.classList.toggle("active", i === index);
+    });
+
+    currentIndex = index;
+  }
+
+  function nextTestimonial() {
+    const nextIndex = (currentIndex + 1) % testimonials.length;
+    showTestimonial(nextIndex);
+  }
+
+  function startAutoSlide() {
+    interval = setInterval(nextTestimonial, 4000); // 4 seconds
+  }
+
+  function stopAutoSlide() {
+    clearInterval(interval);
+  }
+
+  // Dot click handling
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      stopAutoSlide();
+      showTestimonial(index);
+      startAutoSlide();
+    });
+  });
+
+  // Start slider
+  showTestimonial(0);
+  startAutoSlide();
+});
+</script>
+
 
 </body>
 </html>
