@@ -1,430 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>HR Saathi – HR News, Compliance & Workplace Insights</title>
-
-  <meta name="description" content="HR Saathi delivers practical HR news, labour law updates, recruitment trends and people leadership insights for Indian workplaces." />
-  <meta name="keywords" content="HR news India, HR compliance, labour laws, recruitment trends, HR blog" />
-  <meta name="author" content="Prudent HR" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="HR Saathi – Practical HR Insights for Real Workplaces" />
-  <meta property="og:description" content="Clear HR thinking. No jargon. No fluff." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://prudenthr.in/og-image.jpg" />
-  <meta property="og:url" content="https://prudenthr.in/hr-saathi.html" />
-
-  <link rel="canonical" href="https://prudenthr.in/hr-saathi.html" />
-
-<style>
-:root {
-  --primary:#2563eb;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#64748b;
-}
-
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:var(--bg);color:var(--text);line-height:1.65}
-.container{max-width:1100px;margin:auto;padding:0 20px}
-
-/* NAVBAR */
-.navbar{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #e5e7eb
-}
-.nav-container{
-  height:64px;display:flex;
-  align-items:center;justify-content:space-between
-}
-.logo{font-size:20px;font-weight:800}
-.logo span{color:var(--primary)}
-.nav-actions a{
-  margin-left:20px;
-  text-decoration:none;
-  font-weight:600;
-  color:var(--muted)
-}
-.nav-actions a.primary{
-  background:var(--primary);
-  color:white;
-  padding:8px 16px;
-  border-radius:999px
-}
-
-/* HERO */
-.hero{padding:90px 0 60px}
-.hero-content{max-width:760px}
-.badge{
-  font-size:12px;
-  letter-spacing:.12em;
-  font-weight:700;
-  color:var(--primary);
-  text-transform:uppercase
-}
-.hero h1{
-  font-size:clamp(2.2rem,4vw,3rem);
-  margin:16px 0;
-  line-height:1.25
-}
-.hero p{color:var(--muted);font-size:1.1rem}
-
-/* SECTION */
-.section{padding:60px 0}
-.section h2{font-size:1.8rem;margin-bottom:8px}
-.section p{color:var(--muted);margin-bottom:30px}
-
-/* ARTICLES */
-.articles{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:30px
-}
-.article-card{
-  background:var(--card);
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  transition:.3s;
-  cursor:pointer
-}
-.article-card:hover{transform:translateY(-6px)}
-.article-card img{
-  width:100%;height:200px;object-fit:cover
-}
-.article-content{padding:22px}
-.category{
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--primary)
-}
-.article-title{
-  font-size:1.25rem;
-  margin:10px 0
-}
-.article-excerpt{color:var(--muted)}
-.article-footer{
-  display:flex;
-  justify-content:space-between;
-  margin-top:15px;
-  font-size:13px;
-  color:var(--muted)
-}
-
-/* NEWSLETTER */
-.newsletter{
-  background:linear-gradient(135deg,#2563eb,#0b5ed7);
-  color:white;
-  padding:70px 20px;
-  text-align:center
-}
-.newsletter p{
-  max-width:520px;
-  margin:10px auto 25px;
-  opacity:.95
-}
-.newsletter a{
-  display:inline-block;
-  background:white;
-  color:#0b5ed7;
-  padding:12px 26px;
-  border-radius:999px;
-  font-weight:800;
-  text-decoration:none
-}
-
-/* FOOTER */
-footer{
-  padding:30px;
-  text-align:center;
-  color:var(--muted);
-  font-size:14px
-}
-
-/* FOOTER */
-.footer {
-  background: #020617;
-  color: #cbd5f5;
-  padding: 70px 0 0;
-  margin-top: 80px;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 50px;
-}
-
-.footer-brand h3 {
-  font-size: 22px;
-  font-weight: 800;
-  color: white;
-}
-
-.footer-brand h3 span {
-  color: var(--primary);
-}
-
-.footer-brand p {
-  margin: 15px 0 20px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #94a3b8;
-}
-
-.footer-cta {
-  display: inline-block;
-  background: var(--primary);
-  color: white;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.footer-links h4,
-.footer-trust h4 {
-  font-size: 15px;
-  margin-bottom: 15px;
-  color: white;
-}
-
-.footer-links a {
-  display: block;
-  color: #94a3b8;
-  text-decoration: none;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.footer-links a:hover {
-  color: white;
-}
-
-.footer-trust p {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 15px;
-}
-
-.trust-badges span {
-  display: inline-block;
-  background: rgba(255,255,255,.06);
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  margin: 5px 5px 0 0;
-}
-
-.footer-bottom {
-  margin-top: 60px;
-  padding: 20px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  text-align: center;
-  font-size: 13px;
-  color: #64748b;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/public/images/Screenshot 2025-03-03 232149.png">
+    <title>HR Saathi | Insights That Matter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .gradient-hero { background: linear-gradient(135deg, #4a4df7 0%, #a855f7 100%); }
+        .text-gradient {
+            background: linear-gradient(135deg, #3639f5 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .shadow-soft { box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05); }
+        .animate-fade-up {
+            animation: fadeUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Smooth transitions for filtering */
+        #news-grid article { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
 </head>
+<body class="bg-gray-50 text-slate-900">
 
-<body>
-
-<!-- NAV -->
-<nav class="navbar">
-  <div class="container nav-container">
-    <div class="logo">HR<span>Saathi</span></div>
-    <div class="nav-actions">
-      <a href="#latest">Latest</a>
-      <a href="#topics">Topics</a>
-      <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M" target="_blank" class="primary">Join WhatsApp</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero container">
-  <div class="hero-content">
-    <span class="badge">HR Saathi • India</span>
-    <h1>Practical HR insights, labour updates & people leadership — written for real workplaces</h1>
-    <p>No jargon. No fluff. Just clear HR thinking you can apply today.</p>
-  </div>
-</section>
-
-<!-- ARTICLES -->
-<section class="section container" id="latest">
-  <h2>Latest Insights</h2>
-  <p>Curated HR news and workplace thinking.</p>
-
-  <div class="articles">
-    <article class="article-card">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800">
-      <div class="article-content">
-        <span class="category">HR Trends</span>
-        <h3 class="article-title">Future of Remote Work in India</h3>
-        <p class="article-excerpt">How hybrid work is reshaping HR policies, performance management and engagement.</p>
-        <div class="article-footer">
-          <span>HR Saathi</span>
-          <span>Jan 5, 2024 • 5 min read</span>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="text-xl font-bold">HR<span class="text-indigo-600">Saathi 🔥</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 font-medium text-gray-600">
+                <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
+                <a href="#news" class="hover:text-indigo-600 transition-colors">News</a>
+                <a href="#resources" class="hover:text-indigo-600 transition-colors">Resources</a>
+                <a href="#contact" class="hover:text-indigo-600 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="hidden md:block px-4 py-2 text-sm font-medium hover:text-indigo-600">Sign In</button>
+                <button class="gradient-hero text-white px-5 py-2 rounded-lg text-sm font-medium shadow-lg hover:opacity-90 transition-opacity">Get Started</button>
+                <button id="darkToggle" class="p-2 rounded-lg bg-gray-100 text-slate-600 hover:bg-gray-200 transition-colors">
+    <i data-lucide="moon" class="w-5 h-5"></i>
+</button>
+              </div>
         </div>
-      </div>
-    </article>
+        
+    </nav>
 
-    <article class="article-card">
-      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800">
-      <div class="article-content">
-        <span class="category">Recruitment</span>
-        <h3 class="article-title">AI in Recruitment: What HR Must Control</h3>
-        <p class="article-excerpt">Automation is powerful — but fairness, bias and human judgment still matter.</p>
-        <div class="article-footer">
-          <span>HR Saathi</span>
-          <span>Jan 4, 2024 • 4 min read</span>
+    <section id="home" class="relative pt-32 pb-20 overflow-hidden">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 text-sm font-medium mb-6 animate-fade-up">
+                <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                Your Trusted HR Knowledge Partner
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animate-fade-up" style="animation-delay: 0.1s">
+                Empowering HR Leaders with <br><span class="text-gradient">Insights That Matter</span>
+            </h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay: 0.2s">
+                Join 50,000+ professionals transforming their workplace with the latest trends and industry best practices.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style="animation-delay: 0.3s">
+                <button class="gradient-hero text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-xl transition-all">
+                    Start Reading <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                <button class="bg-white border border-gray-200 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition-all">
+                    <i data-lucide="play" class="w-5 h-5"></i> Watch Demo
+                </button>
+            </div>
         </div>
-      </div>
-    </article>
-  </div>
-</section>
+    </section>
 
-<!-- WHATSAPP CTA -->
-<footer class="footer">
-  <div class="container footer-grid">
-
-    <!-- Brand -->
-    <div class="footer-brand">
-      <h3>HR<span>Saathi</span></h3>
-      <p>
-        Practical HR insights, labour updates & people leadership guidance
-        — built for Indian workplaces.
-      </p>
-
-      <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M"
-   target="_blank"
-   rel="noopener"
-   onclick="trackWhatsApp()"
-   class="footer-cta">
-   Join WhatsApp Channel →
-</a>
-
-    </div>
-
-    <!-- Quick Links -->
-    <div class="footer-links">
-      <h4>Explore</h4>
-      <a href="#">Latest Insights</a>
-      <a href="#">HR News</a>
-      <a href="#">HR Compliance</a>
-      <a href="#">People Management</a>
-    </div>
-
-    <!-- Company -->
-    <div class="footer-links">
-      <h4>Prudent HR</h4>
-      <a href="#">About Us</a>
-      <a href="#">Consulting Services</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy Policy</a>
-    </div>
-
-    <!-- Trust -->
-    <div class="footer-trust">
-      <h4>Built for Professionals</h4>
-      <p>Trusted by founders, HR leaders & people managers across India.</p>
-
-      <div class="trust-badges">
-        <span>✔ Practical</span>
-        <span>✔ No Jargon</span>
-        <span>✔ India-focused</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Bottom Bar -->
-  <div class="footer-bottom">
-    © 2024 Prudent HR Consulting Pvt. Ltd. · All rights reserved
-  </div>
-</footer>
-
-
-
-</body>
-</html>
-
-
-<script>
-const data = [
-  {
-    title: "Future of Remote Work",
-    category: "HR Trends",
-    excerpt: "How hybrid work is reshaping HR policies.",
-    content: "Remote work is redefining HR policies across India. Hybrid models, flexible hours, and outcome-based performance are becoming the norm.",
-    meta: "Jan 5, 2024 • 5 min read",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800"
-  },
-  {
-    title: "AI in Recruitment",
-    category: "Recruitment",
-    excerpt: "Balancing automation with human judgment.",
-    content: "AI tools are accelerating hiring, but HR leaders must ensure fairness, transparency and empathy remain central.",
-    meta: "Jan 4, 2024 • 4 min read",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800"
-  }
-];
-
-const container = document.getElementById("articles");
-const modal = document.getElementById("modal");
-
-data.forEach((a, i) => {
-  container.innerHTML += `
-    <article class="article-card" onclick="openArticle(${i})">
-      <img src="${a.image}">
-      <div class="article-content">
-        <span class="category">${a.category}</span>
-        <h3 class="article-title">${a.title}</h3>
-        <p class="article-excerpt">${a.excerpt}</p>
-        <div class="article-footer">
-          <span>HR Saathi</span>
-          <span>${a.meta}</span>
+    <section id="news" class="py-20 bg-gray-100/50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Latest HR Insights</h2>
+                <div class="flex flex-wrap justify-center gap-3" id="category-filters">
+                    <button class="filter-btn active px-6 py-2 rounded-full bg-indigo-600 text-white font-medium transition-all" data-category="All">All</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="Recruitment">Recruitment</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="Leadership">Leadership</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="Compliance">Compliance</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="HR Trends">HR Trends</button>
+                </div>
+            </div>
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
-      </div>
-    </article>
-  `;
-});
+    </section>
 
-function openArticle(i) {
-  modal.style.display = "flex";
-  document.getElementById("modalTitle").innerText = data[i].title;
-  document.getElementById("modalMeta").innerText = data[i].meta;
-  document.getElementById("modalContent").innerText = data[i].content;
-}
+    <section id="contact" class="py-20 gradient-hero text-white relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <i data-lucide="sparkles" class="w-12 h-12 mx-auto mb-6 opacity-80"></i>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Never Miss an Update</h2>
+            <p class="mb-8 opacity-90 max-w-md mx-auto">Join HR professionals receiving weekly insights directly in their inbox.</p>
+            <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-xl text-slate-900 focus:outline-none" required>
+                <button type="submit" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors">Subscribe</button>
+            </form>
+            <div id="subscribeSuccess" class="hidden font-bold mt-4 animate-fade-up">🎉 You're on the list! Welcome.</div>
+        </div>
+    </section>
 
-function trackWhatsApp() {
-  console.log("WhatsApp Join Clicked");
-  // Later connect to GA / Meta Pixel
-}
+    <footer class="bg-slate-900 text-white py-16">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-12">
+            <div class="col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-10 h-10 rounded-xl gradient-hero flex items-center justify-center">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold">HR Saathi</span>
+                </div>
+                <p class="text-slate-400 max-w-sm">Empowering HR professionals with tools and resources to build better workplaces.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Resources</h4>
+                <ul class="text-slate-400 space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Guides</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Webinars</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Support</h4>
+                <ul class="text-slate-400 space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-center text-slate-500 text-sm mt-8">© 2024 PrudentHR. All rights reserved.</p>
+    </footer>
 
-function closeArticle() {
-  modal.style.display = "none";
-}
+    <button id="publishBtn" class="fixed bottom-6 right-6 w-14 h-14 md:w-auto md:px-6 gradient-hero text-white rounded-full shadow-2xl flex items-center justify-center gap-2 z-50 hover:scale-110 transition-transform">
+        <i data-lucide="plus" class="w-6 h-6"></i>
+        <span class="hidden md:inline font-bold">Publish</span>
+    </button>
+
+    <div id="publishModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="modalOverlay"></div>
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md relative z-10 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-4">Create New Article</h2>
+            <div class="space-y-4">
+                <input id="newTitle" type="text" placeholder="Title" class="w-full p-3 border rounded-lg outline-indigo-500">
+                <select id="newCategory" class="w-full p-3 border rounded-lg outline-indigo-500">
+                    <option>Recruitment</option>
+                    <option>Leadership</option>
+                    <option>Compliance</option>
+                    <option>HR Trends</option>
+                </select>
+                <textarea id="newExcerpt" placeholder="Description..." class="w-full p-3 border rounded-lg h-24 outline-indigo-500"></textarea>
+                <button id="submitPost" class="w-full gradient-hero text-white p-3 rounded-lg font-bold">Publish Now</button>
+                <button id="closeModal" class="w-full text-gray-400 text-sm">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Data Store
+        const newsData = [
+            { id: 1, title: "The Future of Remote Work: 2024 Strategies", excerpt: "How organizations are reshaping policies for the hybrid era.", category: "HR Trends", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800" },
+            { id: 2, title: "AI in Recruitment: Efficiency vs Human", excerpt: "Learn how AI tools are transforming the talent landscape.", category: "Recruitment", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" },
+            { id: 3, title: "Emotional Intelligence in Leadership", excerpt: "Why EQ is becoming more important than IQ for modern managers.", category: "Leadership", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800" },
+            { id: 4, title: "New Labor Laws 2024", excerpt: "Stay compliant with the latest changes in employment law.", category: "Compliance", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800" }
+        ];
+
+        // 2. Render Function
+        function renderCards(filter = 'All') {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = '';
+            
+            const filtered = filter === 'All' ? newsData : newsData.filter(item => item.category === filter);
+
+            filtered.forEach((news, index) => {
+                const isFeatured = filter === 'All' && index === 0;
+                const card = document.createElement('article');
+                card.className = `bg-white rounded-2xl overflow-hidden shadow-soft group animate-fade-up ${isFeatured ? 'md:col-span-2' : ''}`;
+                
+                card.innerHTML = `
+                    <div class="${isFeatured ? 'h-64 md:h-80' : 'h-48'} relative overflow-hidden">
+                        <img src="${news.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full">${news.category}</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="${isFeatured ? 'text-2xl' : 'text-lg'} font-bold mb-3 group-hover:text-indigo-600 transition-colors">${news.title}</h3>
+                        <p class="text-gray-500 mb-4 text-sm">${news.excerpt}</p>
+                        <button class="text-indigo-600 font-bold text-sm flex items-center gap-1">
+                            Read More <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // 3. Filter Interaction
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white');
+                    b.classList.add('bg-white', 'text-slate-900');
+                });
+                btn.classList.add('bg-indigo-600', 'text-white');
+                btn.classList.remove('bg-white', 'text-slate-900');
+                renderCards(btn.getAttribute('data-category'));
+            };
+        });
+
+        // 4. Modal Logic
+        const modal = document.getElementById('publishModal');
+        document.getElementById('publishBtn').onclick = () => modal.classList.remove('hidden');
+        document.getElementById('closeModal').onclick = () => modal.classList.add('hidden');
+        document.getElementById('modalOverlay').onclick = () => modal.classList.add('hidden');
+
+        document.getElementById('submitPost').onclick = () => {
+            const title = document.getElementById('newTitle').value;
+            const cat = document.getElementById('newCategory').value;
+            const exc = document.getElementById('newExcerpt').value;
+
+            if(title && exc) {
+                newsData.unshift({
+                    id: Date.now(),
+                    title: title,
+                    category: cat,
+                    excerpt: exc,
+                    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800"
+                });
+                renderCards();
+                modal.classList.add('hidden');
+                document.getElementById('newTitle').value = '';
+                document.getElementById('newExcerpt').value = '';
+            } else {
+                alert("Please fill in all fields");
+            }
+        };
+
+        // 5. Newsletter Submission
+        document.getElementById('newsletterForm').onsubmit = (e) => {
+            e.preventDefault();
+            document.getElementById('newsletterForm').classList.add('hidden');
+            document.getElementById('subscribeSuccess').classList.remove('hidden');
+        };
+
+        // Initialize
+        lucide.createIcons();
+        renderCards();
+    </script>
+    <script>
+    // 1. Data Logic: Load from LocalStorage or use defaults
+    const defaultData = [
+        { id: 1, title: "The Future of Remote Work: 2024 Strategies", excerpt: "How organizations are reshaping policies for the hybrid era.", category: "HR Trends", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800" },
+        { id: 2, title: "AI in Recruitment: Efficiency vs Human", excerpt: "Learn how AI tools are transforming the talent landscape.", category: "Recruitment", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" },
+        { id: 3, title: "Emotional Intelligence in Leadership", excerpt: "Why EQ is becoming more important than IQ for modern managers.", category: "Leadership", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800" },
+        { id: 4, title: "New Labor Laws 2024", excerpt: "Stay compliant with the latest changes in employment law.", category: "Compliance", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800" }
+    ];
+
+    // Attempt to grab saved data, otherwise use the defaults above
+    let newsData = JSON.parse(localStorage.getItem('hr_saathi_posts')) || defaultData;
+
+    // 2. Render Function
+    function renderCards(filter = 'All') {
+        const grid = document.getElementById('news-grid');
+        grid.innerHTML = '';
+        
+        const filtered = filter === 'All' ? newsData : newsData.filter(item => item.category === filter);
+
+        filtered.forEach((news, index) => {
+            const isFeatured = filter === 'All' && index === 0;
+            const card = document.createElement('article');
+            card.className = `bg-white rounded-2xl overflow-hidden shadow-soft group animate-fade-up ${isFeatured ? 'md:col-span-2' : ''}`;
+            
+            card.innerHTML = `
+                <div class="${isFeatured ? 'h-64 md:h-80' : 'h-48'} relative overflow-hidden">
+                    <img src="${news.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full">${news.category}</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="${isFeatured ? 'text-2xl' : 'text-lg'} font-bold mb-3 group-hover:text-indigo-600 transition-colors">${news.title}</h3>
+                    <p class="text-gray-500 mb-4 text-sm">${news.excerpt}</p>
+                    <div class="flex justify-between items-center">
+                        <button class="text-indigo-600 font-bold text-sm flex items-center gap-1">
+                            Read More <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </button>
+                        ${news.id > 4 ? `<button onclick="deletePost(${news.id})" class="text-red-400 hover:text-red-600 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : ''}
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        lucide.createIcons();
+    }
+
+    // 3. New Function: Delete Post
+    window.deletePost = function(id) {
+        if(confirm('Delete this article?')) {
+            newsData = newsData.filter(post => post.id !== id);
+            saveAndRefresh();
+        }
+    }
+
+    // 4. New Function: Save to LocalStorage
+    function saveAndRefresh() {
+        localStorage.setItem('hr_saathi_posts', JSON.stringify(newsData));
+        renderCards();
+    }
+
+    // 5. Filter Interaction
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.onclick = () => {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-indigo-600', 'text-white');
+                b.classList.add('bg-white', 'text-slate-900');
+            });
+            btn.classList.add('bg-indigo-600', 'text-white');
+            btn.classList.remove('bg-white', 'text-slate-900');
+            renderCards(btn.getAttribute('data-category'));
+        };
+    });
+
+    // 6. Modal Logic
+    const modal = document.getElementById('publishModal');
+    document.getElementById('publishBtn').onclick = () => modal.classList.remove('hidden');
+    document.getElementById('closeModal').onclick = () => modal.classList.add('hidden');
+    document.getElementById('modalOverlay').onclick = () => modal.classList.add('hidden');
+
+    document.getElementById('submitPost').onclick = () => {
+        const title = document.getElementById('newTitle').value;
+        const cat = document.getElementById('newCategory').value;
+        const exc = document.getElementById('newExcerpt').value;
+
+        if(title && exc) {
+            newsData.unshift({
+                id: Date.now(), // Unique ID based on time
+                title: title,
+                category: cat,
+                excerpt: exc,
+                image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800"
+            });
+            saveAndRefresh(); // Save to storage and update UI
+            modal.classList.add('hidden');
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newExcerpt').value = '';
+        } else {
+            alert("Please fill in all fields");
+        }
+    };
+
+    // 7. Newsletter Submission
+    document.getElementById('newsletterForm').onsubmit = (e) => {
+        e.preventDefault();
+        document.getElementById('newsletterForm').classList.add('hidden');
+        document.getElementById('subscribeSuccess').classList.remove('hidden');
+    };
+
+    // Initial load
+    renderCards();
 </script>
-
 </body>
 </html>
