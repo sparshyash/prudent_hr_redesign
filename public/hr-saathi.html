@@ -3,360 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/public/images/Screenshot 2025-03-03 232149.png">
-    <title>HR Saathi | Insights That Matter</title>
+    <title>HR Saathi | Pro Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#4f46e5' } } }
+        }
+    </script>
+
     <style>
-        .gradient-hero { background: linear-gradient(135deg, #4a4df7 0%, #a855f7 100%); }
-        .text-gradient {
-            background: linear-gradient(135deg, #3639f5 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .shadow-soft { box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05); }
-        .animate-fade-up {
-            animation: fadeUp 0.5s ease-out forwards;
-            opacity: 0;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Smooth transitions for filtering */
-        #news-grid article { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        .gradient-hero { background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%); }
+        .dark .modal-content { background-color: #1e293b; color: white; }
+        .dark .bg-card { background-color: #1e293b; border-color: #334155; }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-900">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
-        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-2">
-                <span class="text-xl font-bold">HR<span class="text-indigo-600">Saathi 🔥</span></span>
+                <div class="w-10 h-10 gradient-hero rounded-xl flex items-center justify-center"><i data-lucide="briefcase" class="text-white w-6 h-6"></i></div>
+                <span class="text-2xl font-extrabold">HR<span class="text-indigo-600">Saathi</span></span>
             </a>
-            <div class="hidden md:flex items-center gap-8 font-medium text-gray-600">
-                <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
-                <a href="#news" class="hover:text-indigo-600 transition-colors">News</a>
-                <a href="#resources" class="hover:text-indigo-600 transition-colors">Resources</a>
-                <a href="#contact" class="hover:text-indigo-600 transition-colors">Contact</a>
-            </div>
+            
             <div class="flex items-center gap-3">
-                <button class="hidden md:block px-4 py-2 text-sm font-medium hover:text-indigo-600">Sign In</button>
-                <button class="gradient-hero text-white px-5 py-2 rounded-lg text-sm font-medium shadow-lg hover:opacity-90 transition-opacity">Get Started</button>
-                <button id="darkToggle" class="p-2 rounded-lg bg-gray-100 text-slate-600 hover:bg-gray-200 transition-colors">
-    <i data-lucide="moon" class="w-5 h-5"></i>
-</button>
-              </div>
+                <button onclick="toggleDarkMode()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all">
+                    <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+                <button id="authTrigger" class="gradient-hero text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg">Admin</button>
+            </div>
         </div>
-        
     </nav>
 
-    <section id="home" class="relative pt-32 pb-20 overflow-hidden">
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 text-sm font-medium mb-6 animate-fade-up">
-                <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
-                Your Trusted HR Knowledge Partner
-            </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animate-fade-up" style="animation-delay: 0.1s">
-                Empowering HR Leaders with <br><span class="text-gradient">Insights That Matter</span>
-            </h1>
-            <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-10 animate-fade-up" style="animation-delay: 0.2s">
-                Join 50,000+ professionals transforming their workplace with the latest trends and industry best practices.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style="animation-delay: 0.3s">
-                <button class="gradient-hero text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-xl transition-all">
-                    Start Reading <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </button>
-                <button class="bg-white border border-gray-200 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition-all">
-                    <i data-lucide="play" class="w-5 h-5"></i> Watch Demo
-                </button>
-            </div>
+    <header class="pt-40 pb-12 px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-black mb-8">Verified <span class="text-indigo-600">HR Feed</span></h1>
+        <div class="max-w-xl mx-auto relative">
+            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5"></i>
+            <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search by topic, keyword, or law..." 
+                class="w-full p-4 pl-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
         </div>
-    </section>
+    </header>
 
-    <section id="news" class="py-20 bg-gray-100/50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">Latest HR Insights</h2>
-                <div class="flex flex-wrap justify-center gap-3" id="category-filters">
-                    <button class="filter-btn active px-6 py-2 rounded-full bg-indigo-600 text-white font-medium transition-all" data-category="All">All</button>
-                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="Recruitment">Recruitment</button>
-                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="Leadership">Leadership</button>
-                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="Compliance">Compliance</button>
-                    <button class="filter-btn px-6 py-2 rounded-full bg-white border border-gray-200 hover:bg-gray-50 transition-all" data-category="HR Trends">HR Trends</button>
-                </div>
-            </div>
-            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    <main class="container mx-auto px-4 pb-32">
+        <div class="flex flex-wrap justify-center gap-2 mb-12">
+            <button class="cat-btn active px-6 py-2 rounded-full border border-slate-200 dark:border-slate-800 font-bold text-sm" data-category="All">All</button>
+            <button class="cat-btn px-6 py-2 rounded-full border border-slate-200 dark:border-slate-800 font-bold text-sm" data-category="Recruitment">Recruitment</button>
+            <button class="cat-btn px-6 py-2 rounded-full border border-slate-200 dark:border-slate-800 font-bold text-sm" data-category="Leadership">Leadership</button>
+            <button class="cat-btn px-6 py-2 rounded-full border border-slate-200 dark:border-slate-800 font-bold text-sm" data-category="Compliance">Compliance</button>
         </div>
-    </section>
 
-    <section id="contact" class="py-20 gradient-hero text-white relative overflow-hidden">
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <i data-lucide="sparkles" class="w-12 h-12 mx-auto mb-6 opacity-80"></i>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Never Miss an Update</h2>
-            <p class="mb-8 opacity-90 max-w-md mx-auto">Join HR professionals receiving weekly insights directly in their inbox.</p>
-            <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-xl text-slate-900 focus:outline-none" required>
-                <button type="submit" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition-colors">Subscribe</button>
-            </form>
-            <div id="subscribeSuccess" class="hidden font-bold mt-4 animate-fade-up">🎉 You're on the list! Welcome.</div>
+        <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </main>
+
+    <div id="loginModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-md bg-black/50">
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl w-full max-w-sm shadow-2xl text-center">
+            <h2 class="text-xl font-bold mb-6">Admin Verification</h2>
+            <input id="adminPin" type="password" maxlength="4" placeholder="PIN" class="w-full text-center text-3xl p-4 border rounded-2xl mb-6 bg-slate-50 dark:bg-slate-800 outline-none">
+            <button onclick="checkPin()" class="w-full gradient-hero text-white p-4 rounded-2xl font-bold">Access Editor</button>
         </div>
-    </section>
+    </div>
 
-    <footer class="bg-slate-900 text-white py-16">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-12">
-            <div class="col-span-2">
-                <div class="flex items-center gap-2 mb-4">
-                    <div class="w-10 h-10 rounded-xl gradient-hero flex items-center justify-center">
-                        <i data-lucide="briefcase" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <span class="text-xl font-bold">HR Saathi</span>
-                </div>
-                <p class="text-slate-400 max-w-sm">Empowering HR professionals with tools and resources to build better workplaces.</p>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4">Resources</h4>
-                <ul class="text-slate-400 space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Guides</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Webinars</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4">Support</h4>
-                <ul class="text-slate-400 space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <p class="text-center text-slate-500 text-sm mt-8">© 2024 PrudentHR. All rights reserved.</p>
-    </footer>
-
-    <button id="publishBtn" class="fixed bottom-6 right-6 w-14 h-14 md:w-auto md:px-6 gradient-hero text-white rounded-full shadow-2xl flex items-center justify-center gap-2 z-50 hover:scale-110 transition-transform">
-        <i data-lucide="plus" class="w-6 h-6"></i>
-        <span class="hidden md:inline font-bold">Publish</span>
-    </button>
-
-    <div id="publishModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="modalOverlay"></div>
-        <div class="bg-white rounded-2xl p-6 w-full max-w-md relative z-10 shadow-2xl">
-            <h2 class="text-2xl font-bold mb-4">Create New Article</h2>
-            <div class="space-y-4">
-                <input id="newTitle" type="text" placeholder="Title" class="w-full p-3 border rounded-lg outline-indigo-500">
-                <select id="newCategory" class="w-full p-3 border rounded-lg outline-indigo-500">
-                    <option>Recruitment</option>
-                    <option>Leadership</option>
-                    <option>Compliance</option>
-                    <option>HR Trends</option>
+    <div id="publishModal" class="fixed inset-0 z-[101] hidden flex items-center justify-center p-4 backdrop-blur-md bg-black/50">
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl w-full max-w-3xl shadow-2xl max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold mb-6">Create New Verified Insight</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input id="newTitle" type="text" placeholder="Title" class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none">
+                <select id="newCategory" class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none">
+                    <option>Recruitment</option><option>Leadership</option><option>Compliance</option><option>HR Trends</option>
                 </select>
-                <textarea id="newExcerpt" placeholder="Description..." class="w-full p-3 border rounded-lg h-24 outline-indigo-500"></textarea>
-                <button id="submitPost" class="w-full gradient-hero text-white p-3 rounded-lg font-bold">Publish Now</button>
-                <button id="closeModal" class="w-full text-gray-400 text-sm">Cancel</button>
+            </div>
+            <input id="newMedia" type="text" placeholder="Image URL or YouTube Link" class="w-full p-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none mb-4">
+            <div id="editor-container" class="h-48 mb-12 dark:bg-slate-800"></div>
+            <div class="flex gap-4">
+                <button onclick="savePost()" class="flex-1 gradient-hero text-white p-4 rounded-xl font-bold">Publish to Global Feed</button>
+                <button onclick="closeModal('publishModal')" class="px-6 bg-slate-100 dark:bg-slate-800 rounded-xl">Cancel</button>
             </div>
         </div>
     </div>
 
+    <div id="readerModal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 backdrop-blur-md bg-black/50">
+        <div class="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[2rem] w-full max-w-4xl shadow-2xl max-h-[85vh] overflow-y-auto relative">
+            <button onclick="closeModal('readerModal')" class="absolute top-6 right-6 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full"><i data-lucide="x"></i></button>
+            <div id="readerBody"></div>
+        </div>
+    </div>
+
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="font-bold text-lg">HR Saathi</span>
+                <p class="text-slate-500 text-sm mt-1">Empowering HR professionals through data.</p>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="exportToCSV()" class="text-xs font-bold uppercase tracking-widest text-indigo-600">Export CSV</button>
+                <div class="h-4 w-[1px] bg-slate-300"></div>
+                <p class="text-xs text-slate-400 uppercase tracking-widest">© 2026 Verified Portal</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script>
-        // 1. Data Store
-        const newsData = [
-            { id: 1, title: "The Future of Remote Work: 2024 Strategies", excerpt: "How organizations are reshaping policies for the hybrid era.", category: "HR Trends", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800" },
-            { id: 2, title: "AI in Recruitment: Efficiency vs Human", excerpt: "Learn how AI tools are transforming the talent landscape.", category: "Recruitment", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" },
-            { id: 3, title: "Emotional Intelligence in Leadership", excerpt: "Why EQ is becoming more important than IQ for modern managers.", category: "Leadership", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800" },
-            { id: 4, title: "New Labor Laws 2024", excerpt: "Stay compliant with the latest changes in employment law.", category: "Compliance", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800" }
+        const MASTER_PIN = "1234";
+        const quill = new Quill('#editor-container', { theme: 'snow' });
+        
+        let newsData = JSON.parse(localStorage.getItem('hr_saathi_pro')) || [
+            { id: 1, title: "How to use HR Saathi", category: "Leadership", media: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800", excerpt: "Your guide to posting credible HR insights.", content: "<p>Welcome! Use the Admin button to start posting...</p>", date: "Jan 30, 2026" }
         ];
 
-        // 2. Render Function
-        function renderCards(filter = 'All') {
+        // --- STEP 4.1: SEARCH LOGIC ---
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = newsData.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.excerpt.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
+            );
+            renderGrid('All', filtered);
+        }
+
+        // --- STEP 4.2: DARK MODE ---
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('hr_dark_mode', document.documentElement.classList.contains('dark'));
+        }
+        if(localStorage.getItem('hr_dark_mode') === 'true') document.documentElement.classList.add('dark');
+
+        function renderGrid(filter = 'All', customData = null) {
             const grid = document.getElementById('news-grid');
             grid.innerHTML = '';
-            
-            const filtered = filter === 'All' ? newsData : newsData.filter(item => item.category === filter);
+            const dataToUse = customData || (filter === 'All' ? newsData : newsData.filter(item => item.category === filter));
 
-            filtered.forEach((news, index) => {
-                const isFeatured = filter === 'All' && index === 0;
-                const card = document.createElement('article');
-                card.className = `bg-white rounded-2xl overflow-hidden shadow-soft group animate-fade-up ${isFeatured ? 'md:col-span-2' : ''}`;
-                
-                card.innerHTML = `
-                    <div class="${isFeatured ? 'h-64 md:h-80' : 'h-48'} relative overflow-hidden">
-                        <img src="${news.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 left-4 px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full">${news.category}</span>
+            dataToUse.forEach(post => {
+                const isVideo = post.media?.includes('youtube.com') || post.media?.includes('youtu.be');
+                const el = document.createElement('article');
+                el.className = "bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-800 transition-all cursor-pointer group";
+                el.onclick = () => openReader(post.id);
+                el.innerHTML = `
+                    <div class="h-48 bg-slate-100 dark:bg-slate-800 relative">
+                        ${isVideo ? `<div class="absolute inset-0 flex items-center justify-center"><i data-lucide="video" class="w-10 h-10 text-indigo-500"></i></div>` : `<img src="${post.media}" class="w-full h-full object-cover">`}
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 dark:bg-slate-800/90 rounded-full text-[10px] font-black uppercase text-indigo-600">Verified</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="${isFeatured ? 'text-2xl' : 'text-lg'} font-bold mb-3 group-hover:text-indigo-600 transition-colors">${news.title}</h3>
-                        <p class="text-gray-500 mb-4 text-sm">${news.excerpt}</p>
-                        <button class="text-indigo-600 font-bold text-sm flex items-center gap-1">
-                            Read More <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
+                        <span class="text-[10px] font-black uppercase text-slate-400">${post.category}</span>
+                        <h3 class="text-lg font-bold mt-2 leading-tight group-hover:text-indigo-600 transition-colors">${post.title}</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-3 line-clamp-2">${post.excerpt}</p>
+                    </div>`;
+                grid.appendChild(el);
             });
             lucide.createIcons();
         }
 
-        // 3. Filter Interaction
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        // --- STEP 4.3: FIREBASE READY LOGIC ---
+        // To make this "Live", you'd replace 'localStorage' with Firebase 'db.collection.add()'
+        function savePost() {
+            const title = document.getElementById('newTitle').value;
+            if(!title) return alert("Title is required");
+
+            const newPost = {
+                id: Date.now(),
+                title: title,
+                category: document.getElementById('newCategory').value,
+                media: document.getElementById('newMedia').value || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800",
+                content: quill.root.innerHTML,
+                excerpt: quill.getText().substring(0, 100) + "...",
+                date: new Date().toLocaleDateString()
+            };
+
+            newsData.unshift(newPost);
+            localStorage.setItem('hr_saathi_pro', JSON.stringify(newsData));
+            renderGrid();
+            closeModal('publishModal');
+            alert("Published Successfully! (Data saved to local storage)");
+        }
+
+        // Auth & Modals
+        document.getElementById('authTrigger').onclick = () => document.getElementById('loginModal').classList.remove('hidden');
+        function checkPin() {
+            if(document.getElementById('adminPin').value === MASTER_PIN) {
+                closeModal('loginModal');
+                document.getElementById('publishModal').classList.remove('hidden');
+                document.getElementById('adminPin').value = '';
+            } else { alert("Unauthorized"); }
+        }
+
+        function openReader(id) {
+            const p = newsData.find(post => post.id === id);
+            const isVideo = p.media?.includes('youtube.com') || p.media?.includes('youtu.be');
+            let mediaHtml = `<img src="${p.media}" class="w-full h-80 object-cover rounded-3xl mb-8">`;
+            
+            if(isVideo) {
+                const vidId = p.media.split('v=')[1] || p.media.split('/').pop();
+                mediaHtml = `<iframe class="w-full aspect-video rounded-3xl mb-8" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allowfullscreen></iframe>`;
+            }
+
+            document.getElementById('readerBody').innerHTML = `
+                <div class="max-w-2xl mx-auto">
+                    <span class="text-indigo-600 font-black uppercase text-xs tracking-widest">${p.category}</span>
+                    <h1 class="text-3xl md:text-5xl font-black mt-4 mb-8 leading-tight">${p.title}</h1>
+                    ${mediaHtml}
+                    <div class="prose dark:prose-invert prose-indigo max-w-none">${p.content}</div>
+                    <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800">
+                        <button onclick="deletePost(${p.id})" class="text-red-500 text-sm font-bold flex items-center gap-2 hover:opacity-70 transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i> Delete Article</button>
+                    </div>
+                </div>`;
+            document.getElementById('readerModal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function deletePost(id) {
+            if(confirm("Permanently delete this report?")) {
+                newsData = newsData.filter(p => p.id !== id);
+                localStorage.setItem('hr_saathi_pro', JSON.stringify(newsData));
+                renderGrid();
+                closeModal('readerModal');
+            }
+        }
+
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+        
+        function exportToCSV() {
+            let csv = "Category,Title,Link\n";
+            newsData.forEach(p => csv += `"${p.category}","${p.title}","${p.media}"\n`);
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'hr_saathi_backup.csv'; a.click();
+        }
+
+        document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.onclick = () => {
-                document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('bg-indigo-600', 'text-white');
-                    b.classList.add('bg-white', 'text-slate-900');
-                });
-                btn.classList.add('bg-indigo-600', 'text-white');
-                btn.classList.remove('bg-white', 'text-slate-900');
-                renderCards(btn.getAttribute('data-category'));
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active', 'bg-indigo-600', 'text-white'));
+                btn.classList.add('active', 'bg-indigo-600', 'text-white');
+                renderGrid(btn.dataset.category);
             };
         });
 
-        // 4. Modal Logic
-        const modal = document.getElementById('publishModal');
-        document.getElementById('publishBtn').onclick = () => modal.classList.remove('hidden');
-        document.getElementById('closeModal').onclick = () => modal.classList.add('hidden');
-        document.getElementById('modalOverlay').onclick = () => modal.classList.add('hidden');
-
-        document.getElementById('submitPost').onclick = () => {
-            const title = document.getElementById('newTitle').value;
-            const cat = document.getElementById('newCategory').value;
-            const exc = document.getElementById('newExcerpt').value;
-
-            if(title && exc) {
-                newsData.unshift({
-                    id: Date.now(),
-                    title: title,
-                    category: cat,
-                    excerpt: exc,
-                    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800"
-                });
-                renderCards();
-                modal.classList.add('hidden');
-                document.getElementById('newTitle').value = '';
-                document.getElementById('newExcerpt').value = '';
-            } else {
-                alert("Please fill in all fields");
-            }
-        };
-
-        // 5. Newsletter Submission
-        document.getElementById('newsletterForm').onsubmit = (e) => {
-            e.preventDefault();
-            document.getElementById('newsletterForm').classList.add('hidden');
-            document.getElementById('subscribeSuccess').classList.remove('hidden');
-        };
-
-        // Initialize
-        lucide.createIcons();
-        renderCards();
+        renderGrid();
     </script>
-    <script>
-    // 1. Data Logic: Load from LocalStorage or use defaults
-    const defaultData = [
-        { id: 1, title: "The Future of Remote Work: 2024 Strategies", excerpt: "How organizations are reshaping policies for the hybrid era.", category: "HR Trends", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800" },
-        { id: 2, title: "AI in Recruitment: Efficiency vs Human", excerpt: "Learn how AI tools are transforming the talent landscape.", category: "Recruitment", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" },
-        { id: 3, title: "Emotional Intelligence in Leadership", excerpt: "Why EQ is becoming more important than IQ for modern managers.", category: "Leadership", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800" },
-        { id: 4, title: "New Labor Laws 2024", excerpt: "Stay compliant with the latest changes in employment law.", category: "Compliance", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800" }
-    ];
-
-    // Attempt to grab saved data, otherwise use the defaults above
-    let newsData = JSON.parse(localStorage.getItem('hr_saathi_posts')) || defaultData;
-
-    // 2. Render Function
-    function renderCards(filter = 'All') {
-        const grid = document.getElementById('news-grid');
-        grid.innerHTML = '';
-        
-        const filtered = filter === 'All' ? newsData : newsData.filter(item => item.category === filter);
-
-        filtered.forEach((news, index) => {
-            const isFeatured = filter === 'All' && index === 0;
-            const card = document.createElement('article');
-            card.className = `bg-white rounded-2xl overflow-hidden shadow-soft group animate-fade-up ${isFeatured ? 'md:col-span-2' : ''}`;
-            
-            card.innerHTML = `
-                <div class="${isFeatured ? 'h-64 md:h-80' : 'h-48'} relative overflow-hidden">
-                    <img src="${news.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <span class="absolute top-4 left-4 px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full">${news.category}</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="${isFeatured ? 'text-2xl' : 'text-lg'} font-bold mb-3 group-hover:text-indigo-600 transition-colors">${news.title}</h3>
-                    <p class="text-gray-500 mb-4 text-sm">${news.excerpt}</p>
-                    <div class="flex justify-between items-center">
-                        <button class="text-indigo-600 font-bold text-sm flex items-center gap-1">
-                            Read More <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                        </button>
-                        ${news.id > 4 ? `<button onclick="deletePost(${news.id})" class="text-red-400 hover:text-red-600 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : ''}
-                    </div>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
-        lucide.createIcons();
-    }
-
-    // 3. New Function: Delete Post
-    window.deletePost = function(id) {
-        if(confirm('Delete this article?')) {
-            newsData = newsData.filter(post => post.id !== id);
-            saveAndRefresh();
-        }
-    }
-
-    // 4. New Function: Save to LocalStorage
-    function saveAndRefresh() {
-        localStorage.setItem('hr_saathi_posts', JSON.stringify(newsData));
-        renderCards();
-    }
-
-    // 5. Filter Interaction
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.onclick = () => {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.remove('bg-indigo-600', 'text-white');
-                b.classList.add('bg-white', 'text-slate-900');
-            });
-            btn.classList.add('bg-indigo-600', 'text-white');
-            btn.classList.remove('bg-white', 'text-slate-900');
-            renderCards(btn.getAttribute('data-category'));
-        };
-    });
-
-    // 6. Modal Logic
-    const modal = document.getElementById('publishModal');
-    document.getElementById('publishBtn').onclick = () => modal.classList.remove('hidden');
-    document.getElementById('closeModal').onclick = () => modal.classList.add('hidden');
-    document.getElementById('modalOverlay').onclick = () => modal.classList.add('hidden');
-
-    document.getElementById('submitPost').onclick = () => {
-        const title = document.getElementById('newTitle').value;
-        const cat = document.getElementById('newCategory').value;
-        const exc = document.getElementById('newExcerpt').value;
-
-        if(title && exc) {
-            newsData.unshift({
-                id: Date.now(), // Unique ID based on time
-                title: title,
-                category: cat,
-                excerpt: exc,
-                image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800"
-            });
-            saveAndRefresh(); // Save to storage and update UI
-            modal.classList.add('hidden');
-            document.getElementById('newTitle').value = '';
-            document.getElementById('newExcerpt').value = '';
-        } else {
-            alert("Please fill in all fields");
-        }
-    };
-
-    // 7. Newsletter Submission
-    document.getElementById('newsletterForm').onsubmit = (e) => {
-        e.preventDefault();
-        document.getElementById('newsletterForm').classList.add('hidden');
-        document.getElementById('subscribeSuccess').classList.remove('hidden');
-    };
-
-    // Initial load
-    renderCards();
-</script>
 </body>
 </html>
