@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="https://dl.dropboxusercontent.com/scl/fi/iqmpc484yp2y5s1iipbof/Screenshot-2025-03-03-232149.png?rlkey=gczowr4g7vem3srs12rlzy8to">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         /* Global Styles */
         :root {
@@ -696,9 +697,11 @@
         }
         
         /* Updated Social Links Section */
+/* --- Social Media Branding (Permanent Colors) --- */
 .social-links {
     display: flex;
     gap: 15px;
+    margin-top: 15px;
 }
 
 .social-links a {
@@ -707,32 +710,25 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1); /* Default semi-transparent background */
     border-radius: 50%;
-    color: white;
+    color: white !important; /* Keep the icon white */
     font-size: 18px;
     transition: all 0.3s ease;
 }
 
-/* Original Brand Colors on Hover */
-.social-links a.facebook:hover {
-    background: #1877F2;
-    transform: translateY(-5px);
+/* Base Colors (Always Visible) */
+.social-links a.facebook { background: #1877F2; }
+.social-links a.whatsapp { background: #25D366; }
+.social-links a.linkedin { background: #0077B5; }
+.social-links a.instagram { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
 }
 
-.social-links a.whatsapp:hover {
-    background: #25D366;
+/* Hover Effect (Grow and brighten) */
+.social-links a:hover {
     transform: translateY(-5px);
-}
-
-.social-links a.linkedin:hover {
-    background: #0077B5;
-    transform: translateY(-5px);
-}
-
-.social-links a.instagram:hover {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    transform: translateY(-5px);
+    filter: brightness(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
         
         .footer-bottom {
@@ -1267,11 +1263,14 @@
                     <h4>About PrudentHR</h4>
                     <p>PrudentHR is a leading human resource consulting firm dedicated to helping businesses optimize their workforce and achieve sustainable growth.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.linkedin.com/company/prudenthr-consultancy"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.instagram.com/prudenthrconsultancy/"><i class="fab fa-instagram"></i></a>
-                    </div>
+    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+    
+    <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+    
+    <a href="https://www.linkedin.com/company/prudenthr-consultancy" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+    
+    <a href="https://www.instagram.com/prudenthrconsultancy/" class="instagram"><i class="fab fa-instagram"></i></a>
+</div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
