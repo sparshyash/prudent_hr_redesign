@@ -37,7 +37,7 @@
                     <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                 </button>
-                <button id="authTrigger" class="gradient-hero text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg">Admin</button>
+                <button onclick="openAdmin()" class="gradient-hero text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg">Admin</button>
             </div>
         </div>
     </nav>
@@ -71,23 +71,55 @@
     </div>
 
     <div id="publishModal" class="fixed inset-0 z-[101] hidden flex items-center justify-center p-4 backdrop-blur-md bg-black/50">
-        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl w-full max-w-3xl shadow-2xl max-h-[90vh] overflow-y-auto">
-            <h2 class="text-2xl font-bold mb-6">Create New Verified Insight</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <input id="newTitle" type="text" placeholder="Title" class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none">
-                <select id="newCategory" class="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none">
-                    <option>Recruitment</option><option>Leadership</option><option>Compliance</option><option>HR Trends</option>
+    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl w-full max-w-5xl shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Blog Editor</h2>
+            <button onclick="generateAIContent()" class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-200 transition-all">
+                ✨ AI Generate Content
+            </button>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6">
+            <div>
+                <input id="newTitle" oninput="updatePreview()" type="text" placeholder="Blog Title..." class="w-full p-4 mb-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none border border-transparent focus:border-indigo-500">
+                
+                <select id="newCategory" class="w-full p-4 mb-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none">
+                    <option>Recruitment</option>
+                    <option>Leadership</option>
+                    <option>Compliance</option>
+                    <option>HR Trends</option>
                 </select>
+
+                <input id="newMedia" oninput="updatePreview()" type="text" placeholder="Google Drive Link or Image URL" class="w-full p-4 mb-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none">
+                
+                <div class="mb-4">
+                    <label class="text-xs font-bold text-slate-400 uppercase mb-2 block">Article Body</label>
+                    <div id="editor-container" class="h-64 dark:bg-slate-800 rounded-b-xl"></div>
+                </div>
             </div>
-            <input id="newMedia" type="text" placeholder="Image URL or YouTube Link" class="w-full p-4 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none mb-4">
-            <div id="editor-container" class="h-48 mb-12 dark:bg-slate-800"></div>
-            <div class="flex gap-4">
-                <button onclick="savePost()" class="flex-1 gradient-hero text-white p-4 rounded-xl font-bold">Publish to Global Feed</button>
-                <button onclick="closeModal('publishModal')" class="px-6 bg-slate-100 dark:bg-slate-800 rounded-xl">Cancel</button>
+
+            <div class="border-l border-slate-200 dark:border-slate-800 pl-8 hidden lg:block">
+                <p class="text-xs font-bold text-slate-400 mb-4 uppercase text-center">Live Tablet Preview</p>
+                <div class="rounded-[2.5rem] p-4 bg-slate-800 border-[8px] border-slate-700 shadow-2xl mx-auto max-w-[300px]">
+                    <div class="bg-white dark:bg-slate-900 rounded-[1.5rem] overflow-hidden min-h-[400px]">
+                        <img id="previewImg" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400" class="w-full h-32 object-cover">
+                        <div class="p-4">
+                            <h3 id="previewTitle" class="font-bold text-md leading-tight text-slate-800 dark:text-white">Blog Title Preview</h3>
+                            <div class="h-2 w-12 bg-indigo-500 my-2 rounded-full"></div>
+                            <p class="text-[10px] text-slate-400 mt-2">Professional insight verified by HR Saathi...</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="flex gap-4">
+            <button onclick="savePost()" class="flex-1 gradient-hero text-white p-4 rounded-xl font-bold shadow-lg">Publish to Global Feed</button>
+            <button onclick="closeModal('publishModal')" class="px-6 bg-slate-100 dark:bg-slate-800 rounded-xl font-semibold">Cancel</button>
+        </div>
+    </div>
+</div>
+            
     <div id="readerModal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 backdrop-blur-md bg-black/50">
         <div class="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[2rem] w-full max-w-4xl shadow-2xl max-h-[85vh] overflow-y-auto relative">
             <button onclick="closeModal('readerModal')" class="absolute top-6 right-6 p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full"><i data-lucide="x"></i></button>
@@ -110,142 +142,150 @@
     </footer>
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script>
-        const MASTER_PIN = "1234";
-        const quill = new Quill('#editor-container', { theme: 'snow' });
-        
-        let newsData = JSON.parse(localStorage.getItem('hr_saathi_pro')) || [
-            { id: 1, title: "How to use HR Saathi", category: "Leadership", media: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800", excerpt: "Your guide to posting credible HR insights.", content: "<p>Welcome! Use the Admin button to start posting...</p>", date: "Jan 30, 2026" }
-        ];
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    const MASTER_PIN = "1234";
+    const starterBlog = {
+        id: 101,
+        title: "Mastering HR Saathi: Your Pro Guide",
+        category: "Leadership",
+        media: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800",
+        content: `<h2>Welcome to the Feed</h2><p>This is your first verified post. To add more:</p><ul><li>Click <b>Admin</b></li><li>Unlock with <b>1234</b></li><li>Paste a <b>Google Drive</b> link for images!</li></ul>`,
+        excerpt: "Learn how to publish verified insights and use AI to streamline your HR reporting...",
+        date: new Date().toLocaleDateString()
+    };
 
-        // --- STEP 4.1: SEARCH LOGIC ---
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = newsData.filter(p => 
-                p.title.toLowerCase().includes(query) || 
-                p.excerpt.toLowerCase().includes(query) ||
-                p.category.toLowerCase().includes(query)
-            );
-            renderGrid('All', filtered);
+    let newsData = JSON.parse(localStorage.getItem('hr_saathi_pro')) || [starterBlog];
+    let activeCategory = "All";
+
+    // Initialize Editor
+    const quill = new Quill('#editor-container', { 
+        theme: 'snow',
+        modules: { toolbar: [[{ 'header': [1, 2, false] }], ['bold', 'italic', 'link'], [{ 'list': 'ordered'}, { 'list': 'bullet' }], ['clean']] }
+    });
+
+    // --- MODAL CONTROLS ---
+    function openAdmin() { document.getElementById('loginModal').classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+    function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+
+    function checkPin() {
+        if(document.getElementById('adminPin').value === MASTER_PIN) {
+            closeModal('loginModal');
+            document.getElementById('publishModal').classList.remove('hidden');
+            document.getElementById('adminPin').value = '';
+            quill.update();
+        } else { alert("Unauthorized PIN"); }
+    }
+
+    // --- IMAGE URL FIXER ---
+    function fixMediaUrl(url) {
+        if (url.includes('drive.google.com')) {
+            const fileId = url.match(/[-\w]{25,}/);
+            if (fileId) return `https://link.getblock.net/raw/${fileId[0]}`; // Direct proxy or use export=view
+            return `https://drive.google.com/uc?export=view&id=${fileId[0]}`;
         }
+        return url || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800";
+    }
 
-        // --- STEP 4.2: DARK MODE ---
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('hr_dark_mode', document.documentElement.classList.contains('dark'));
-        }
-        if(localStorage.getItem('hr_dark_mode') === 'true') document.documentElement.classList.add('dark');
+    // --- LIVE PREVIEW ---
+    function updatePreview() {
+        const title = document.getElementById('newTitle').value;
+        const media = document.getElementById('newMedia').value;
+        document.getElementById('previewTitle').innerText = title || "Blog Title Preview";
+        document.getElementById('previewImg').src = fixMediaUrl(media);
+    }
 
-        function renderGrid(filter = 'All', customData = null) {
-            const grid = document.getElementById('news-grid');
-            grid.innerHTML = '';
-            const dataToUse = customData || (filter === 'All' ? newsData : newsData.filter(item => item.category === filter));
+    // --- SEARCH & FILTER ---
+    function handleSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        renderGrid(query);
+    }
 
-            dataToUse.forEach(post => {
-                const isVideo = post.media?.includes('youtube.com') || post.media?.includes('youtu.be');
-                const el = document.createElement('article');
-                el.className = "bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-800 transition-all cursor-pointer group";
-                el.onclick = () => openReader(post.id);
-                el.innerHTML = `
-                    <div class="h-48 bg-slate-100 dark:bg-slate-800 relative">
-                        ${isVideo ? `<div class="absolute inset-0 flex items-center justify-center"><i data-lucide="video" class="w-10 h-10 text-indigo-500"></i></div>` : `<img src="${post.media}" class="w-full h-full object-cover">`}
-                        <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 dark:bg-slate-800/90 rounded-full text-[10px] font-black uppercase text-indigo-600">Verified</div>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] font-black uppercase text-slate-400">${post.category}</span>
-                        <h3 class="text-lg font-bold mt-2 leading-tight group-hover:text-indigo-600 transition-colors">${post.title}</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-3 line-clamp-2">${post.excerpt}</p>
-                    </div>`;
-                grid.appendChild(el);
-            });
-            lucide.createIcons();
-        }
-
-        // --- STEP 4.3: FIREBASE READY LOGIC ---
-        // To make this "Live", you'd replace 'localStorage' with Firebase 'db.collection.add()'
-        function savePost() {
-            const title = document.getElementById('newTitle').value;
-            if(!title) return alert("Title is required");
-
-            const newPost = {
-                id: Date.now(),
-                title: title,
-                category: document.getElementById('newCategory').value,
-                media: document.getElementById('newMedia').value || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800",
-                content: quill.root.innerHTML,
-                excerpt: quill.getText().substring(0, 100) + "...",
-                date: new Date().toLocaleDateString()
-            };
-
-            newsData.unshift(newPost);
-            localStorage.setItem('hr_saathi_pro', JSON.stringify(newsData));
+    // Category Filter Event Listeners
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active', 'bg-indigo-600', 'text-white'));
+            btn.classList.add('active', 'bg-indigo-600', 'text-white');
+            activeCategory = btn.getAttribute('data-category');
             renderGrid();
-            closeModal('publishModal');
-            alert("Published Successfully! (Data saved to local storage)");
-        }
+        });
+    });
 
-        // Auth & Modals
-        document.getElementById('authTrigger').onclick = () => document.getElementById('loginModal').classList.remove('hidden');
-        function checkPin() {
-            if(document.getElementById('adminPin').value === MASTER_PIN) {
-                closeModal('loginModal');
-                document.getElementById('publishModal').classList.remove('hidden');
-                document.getElementById('adminPin').value = '';
-            } else { alert("Unauthorized"); }
-        }
-
-        function openReader(id) {
-            const p = newsData.find(post => post.id === id);
-            const isVideo = p.media?.includes('youtube.com') || p.media?.includes('youtu.be');
-            let mediaHtml = `<img src="${p.media}" class="w-full h-80 object-cover rounded-3xl mb-8">`;
-            
-            if(isVideo) {
-                const vidId = p.media.split('v=')[1] || p.media.split('/').pop();
-                mediaHtml = `<iframe class="w-full aspect-video rounded-3xl mb-8" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allowfullscreen></iframe>`;
-            }
-
-            document.getElementById('readerBody').innerHTML = `
-                <div class="max-w-2xl mx-auto">
-                    <span class="text-indigo-600 font-black uppercase text-xs tracking-widest">${p.category}</span>
-                    <h1 class="text-3xl md:text-5xl font-black mt-4 mb-8 leading-tight">${p.title}</h1>
-                    ${mediaHtml}
-                    <div class="prose dark:prose-invert prose-indigo max-w-none">${p.content}</div>
-                    <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800">
-                        <button onclick="deletePost(${p.id})" class="text-red-500 text-sm font-bold flex items-center gap-2 hover:opacity-70 transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i> Delete Article</button>
-                    </div>
-                </div>`;
-            document.getElementById('readerModal').classList.remove('hidden');
-            lucide.createIcons();
-        }
-
-        function deletePost(id) {
-            if(confirm("Permanently delete this report?")) {
-                newsData = newsData.filter(p => p.id !== id);
-                localStorage.setItem('hr_saathi_pro', JSON.stringify(newsData));
-                renderGrid();
-                closeModal('readerModal');
-            }
-        }
-
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+    // --- BLOG ACTIONS ---
+    function openReader(id) {
+        const post = newsData.find(p => p.id === id);
+        if(!post) return;
         
-        function exportToCSV() {
-            let csv = "Category,Title,Link\n";
-            newsData.forEach(p => csv += `"${p.category}","${p.title}","${p.media}"\n`);
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a'); a.href = url; a.download = 'hr_saathi_backup.csv'; a.click();
-        }
+        document.getElementById('readerBody').innerHTML = `
+            <img src="${post.media}" class="w-full h-64 object-cover rounded-3xl mb-8">
+            <span class="text-indigo-600 font-bold uppercase text-sm">${post.category}</span>
+            <h1 class="text-3xl md:text-5xl font-black my-4">${post.title}</h1>
+            <p class="text-slate-400 mb-8 font-medium">Published on ${post.date}</p>
+            <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+                ${post.content}
+            </div>
+        `;
+        document.getElementById('readerModal').classList.remove('hidden');
+    }
 
-        document.querySelectorAll('.cat-btn').forEach(btn => {
-            btn.onclick = () => {
-                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active', 'bg-indigo-600', 'text-white'));
-                btn.classList.add('active', 'bg-indigo-600', 'text-white');
-                renderGrid(btn.dataset.category);
-            };
+    function savePost() {
+        const title = document.getElementById('newTitle').value;
+        const mediaUrl = document.getElementById('newMedia').value;
+
+        const newPost = {
+            id: Date.now(),
+            title: title || "Untitled Insight",
+            category: document.getElementById('newCategory').value,
+            media: fixMediaUrl(mediaUrl),
+            content: quill.root.innerHTML,
+            excerpt: quill.getText().substring(0, 100) + "...",
+            date: new Date().toLocaleDateString()
+        };
+
+        newsData.unshift(newPost);
+        localStorage.setItem('hr_saathi_pro', JSON.stringify(newsData));
+        closeModal('publishModal');
+        renderGrid();
+    }
+
+    // --- RENDER GRID ---
+    function renderGrid(searchQuery = "") {
+        const grid = document.getElementById('news-grid');
+        grid.innerHTML = '';
+        
+        const filtered = newsData.filter(post => {
+            const matchesSearch = post.title.toLowerCase().includes(searchQuery) || 
+                                 post.excerpt.toLowerCase().includes(searchQuery);
+            const matchesCat = activeCategory === "All" || post.category === activeCategory;
+            return matchesSearch && matchesCat;
         });
 
-        renderGrid();
-    </script>
+        filtered.forEach(post => {
+            const card = document.createElement('div');
+            card.onclick = () => openReader(post.id);
+            card.className = "bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 p-4 cursor-pointer hover:shadow-lg transition-all group";
+            card.innerHTML = `
+                <div class="overflow-hidden rounded-2xl mb-4">
+                    <img src="${post.media}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <span class="text-xs font-bold text-indigo-600 uppercase">${post.category}</span>
+                <h3 class="text-xl font-bold mt-2 group-hover:text-indigo-600 transition-colors">${post.title}</h3>
+                <p class="text-slate-500 text-sm mt-2 line-clamp-2">${post.excerpt}</p>
+                <div class="mt-4 flex justify-between items-center">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase">${post.date}</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-indigo-600"></i>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        lucide.createIcons();
+    }
+
+    // Initial Load
+    renderGrid();
+    lucide.createIcons();
+</script>
 </body>
 </html>

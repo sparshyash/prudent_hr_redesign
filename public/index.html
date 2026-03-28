@@ -18,10 +18,12 @@
 
     <title>PrudentHR - Strategic HR Consulting Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="https://dl.dropboxusercontent.com/scl/fi/iqmpc484yp2y5s1iipbof/Screenshot-2025-03-03-232149.png?rlkey=gczowr4g7vem3srs12rlzy8to">
+   <link rel="icon" type="image/png" href="https://dl.dropboxusercontent.com/scl/fi/iqmpc484yp2y5s1iipbof/Screenshot-2025-03-03-232149.png?rlkey=gczowr4g7vem3srs12rlzy8to&dl=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
+    
+</head>
+<style>
         /* Global Styles */
         :root {
             --primary-color: #2c3e50;
@@ -172,10 +174,12 @@
         }
         
         .logo img {
-            height: 60px;
-            margin-right: 10px;
-            margin-left: 10px;
-        }
+    height: 60px;
+    width: auto; /* Ensures aspect ratio is maintained */
+    display: block; /* Prevents inline alignment issues */
+    object-fit: contain; /* Keeps logo from stretching */
+    min-width: 50px; /* Forces a minimum visibility */
+}
         
         .logo h1 {
             font-size: 24px;
@@ -229,19 +233,24 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
+    /* We use a linear-gradient overlay so the white text is easy to read */
+    background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), 
+                url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional: adds a nice parallax effect */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
         }
-        
+
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px; /* Prevents text hitting edges on mobile */
         }
         
         .hero h1 {
@@ -695,145 +704,345 @@
         .footer-contact span {
             color: rgba(255, 255, 255, 0.7);
         }
-        
-        /* Updated Social Links Section */
-/* --- Social Media Branding (Permanent Colors) --- */
-.social-links {
+
+        /* --- Floating Social Buttons (Permanent Colors) --- */
+.social-side-bar {
+    position: fixed;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10002; /* Above the lock overlay */
+}
+
+
+
+/* Permanent Brand Backgrounds */
+/* Instagram Gradient Brand Color */
+.social-icon.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    color: #fff;
+}
+
+/* LinkedIn & WhatsApp */
+.social-icon.linkedin { background-color: #0077b5; color: #fff; }
+.social-icon.whatsapp { background-color: #25d366; color: #fff; }
+
+/* General Sidebar Styling */
+.social-side-bar {
     display: flex;
     gap: 15px;
     margin-top: 15px;
 }
-
-.social-links a {
+.social-icon {
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
     border-radius: 50%;
-    color: white !important; /* Keep the icon white */
-    font-size: 18px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+.social-icon:hover { transform: translateY(-3px); }
+
+/* The Pop-Up Hover Effect */
+.social-icon:hover {
+    transform: scale(1.15) translateX(-5px); /* Pops out toward the left */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    filter: brightness(1.1); /* Slightly glows on hover */
+}
+
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    right: 70px;
+    background: #333;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.social-icon:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 75px;
+}
+
+/* Mobile View: Move to bottom for better thumb reach */
+@media (max-width: 768px) {
+    .social-side-bar {
+        bottom: 30px;
+        top: auto;
+        right: 20px;
+        transform: none;
+        flex-direction: column; /* Keep them vertical but at the bottom */
+    }
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+
+/* --- Ultra Modern Entry Popup --- */
+#lock-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85); /* Deep dark overlay */
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centered perfectly */
+    z-index: 10001;
+}
+
+.cookie-popup {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 24px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup-form .form-control {
+    width: 100%;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.popup-form .form-control:focus {
+    border-color: #3498db;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+}
+
+.consent-box {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 16px;
+    margin: 20px 0;
+}
+
+.consent-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #475569;
+}
+
+.btn-enter {
+    width: 100%;
+    background: #2c3e50;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: none;
     transition: all 0.3s ease;
 }
 
-/* Base Colors (Always Visible) */
-.social-links a.facebook { background: #1877F2; }
-.social-links a.whatsapp { background: #25D366; }
-.social-links a.linkedin { background: #0077B5; }
-.social-links a.instagram { 
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
+.btn-enter:hover {
+    background: #e74c3c !important; /* Bright Red on Hover */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
 }
 
-/* Hover Effect (Grow and brighten) */
-.social-links a:hover {
-    transform: translateY(-5px);
-    filter: brightness(1.1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+/* Visual cue for required fields */
+.form-control:invalid:focus {
+    border-color: #e74c3c;
 }
-        
-        .footer-bottom {
-            background: rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
-            text-align: center;
-        }
-        
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            margin: 0;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-img, .about-text {
-                flex: none;
-                width: 100%;
-            }
-            
-            .hero h1 {
-                font-size: 42px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 15px 0;
-            }
-            
-            nav {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 80px);
-                background: white;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                transition: all 0.3s ease;
-                z-index: 999;
-            }
-            
-            nav.active {
-                left: 0;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                padding: 30px;
-            }
-            
-            nav ul li {
-                margin: 15px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .section-title h2 {
-                font-size: 28px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-form {
-                padding: 30px 20px;
-            }
-        }
-    </style>
-</head>
+
+/* Add this to your existing popup CSS */
+.popup-form .form-group label {
+    transition: color 0.3s ease;
+}
+
+/* Styling for the optional input to look slightly different */
+#pop-phone {
+    border-style: dashed; /* Subtle hint that it's optional */
+    background: #ffffff;
+}
+
+#pop-phone:focus {
+    border-style: solid;
+    border-color: var(--secondary-color);
+}
+
+/* --- Added for the Close Cross & Smooth Fade --- */
+
+.close-popup-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #94a3b8; /* Slate color */
+    transition: all 0.3s ease;
+    z-index: 10;
+    line-height: 1;
+}
+
+.close-popup-btn:hover {
+    color: #e74c3c; /* Prudent Red on hover */
+    transform: scale(1.15);
+}
+
+/* Updated overlay for smooth JavaScript transition */
+#lock-overlay {
+    display: none; /* Controlled by JS */
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Ensure the popup stays centered and clean */
+.cookie-popup {
+    position: relative; /* Needed for the absolute cross button */
+    transform: translateY(20px);
+    transition: transform 0.6s ease-out;
+}
+
+#lock-overlay.active .cookie-popup {
+    transform: translateY(0);
+}
+
+
+/* --- RESPONSIVE MOBILE OVERRIDES --- */
+
+@media (max-width: 992px) {
+    .header-container {
+        padding: 15px 20px;
+    }
+
+    nav {
+        display: block; /* Hide standard nav, we will use a burger menu later */
+    }
+
+    .mobile-menu-btn {
+        display: block; /* Show the menu icon */
+    }
+
+    .hero h1 {
+        font-size: 32px; /* Smaller text for mobile screens */
+    }
+
+    /* Stack 'About' and 'Contact' columns vertically instead of side-by-side */
+    .about-content, 
+    .contact-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-img, .about-text {
+        flex: none;
+        width: 100%;
+    }
+
+    nav ul {
+        display: none; /* Hide by default */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Sits right under the header */
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        z-index: 9999;
+    }
+
+    /* When we add the 'active' class via JS, show the menu */
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+    .hero-btns {
+        flex-direction: column; /* Stack buttons on top of each other */
+        padding: 0 40px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* One service card per row */
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr; /* Two stats per row */
+    }
+
+    .contact-form {
+        padding: 20px; /* More space for fingers to type */
+    }
+
+    /* Adjust the floating sidebar so it doesn't cover content */
+    .social-side-bar {
+        right: 10px;
+        gap: 10px;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Ensure the Popup is readable on small screens */
+    .cookie-popup {
+        padding: 20px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr; /* One stat per row on tiny phones */
+    }
+    
+    .logo h1 {
+        font-size: 18px; /* Shrink logo text */
+    }
+}
+
+
+</style>
+
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X0JJ79X0D"></script>
 <script>
@@ -843,13 +1052,56 @@
 
   gtag('config', 'G-6X0JJ79X0D');
 </script>
+
 <body>
+
+    <!-- POP UP-->
+<section>
+  <div id="lock-overlay">
+    <div class="cookie-popup">
+        <div class="popup-header">
+            <i class="fas fa-user-shield" style="font-size: 40px; color: var(--secondary-color); margin-bottom: 15px;"></i>
+            <button id="close-popup" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color:#7f8c8d;">&times;</button>
+            <h2>Join PrudentHR</h2>
+            
+        </div>
+        
+        <form id="cookie-contact-form" class="popup-form">
+            <div class="form-group">
+                <label style="display:block; text-align:left; font-size:12px; font-weight:bold; margin-bottom:5px;">Full Name <span style="color:red">*</span></label>
+                <input type="text" id="pop-name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label style="display:block; text-align:left; font-size:12px; font-weight:bold; margin-bottom:5px;">Email Address <span style="color:red">*</span></label>
+                <input type="email" id="pop-email" class="form-control" placeholder="name@company.com" required>
+            </div>
+
+            <div class="form-group">
+                <label style="display:block; text-align:left; font-size:12px; font-weight:bold; margin-bottom:5px; color: #7f8c8d;">Phone Number (Optional)</label>
+                <input type="tel" id="pop-phone" class="form-control" placeholder="+91 XXXXX XXXXX">
+            </div>
+
+            <div class="consent-box">
+                
+                <label class="consent-item">
+                    <input type="checkbox" id="whatsapp-updates">
+                    <span>Updates via WhatsApp and Email <i class="fab fa-whatsapp" style="color:#25D366"></i></span>
+                </label>
+                
+            </div>
+
+            <button type="submit" class="btn btn-enter">Submit</button>
+        </form>
+    </div>
+</div>
+</section>
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
             <div class="logo">
                 
-                <img src="https://dl.dropboxusercontent.com/scl/fi/1qi9htm8yezski7ihs34q/Screenshot-2025-03-03-204508.png?rlkey=is8rgvexy7ex3h62mqtn5t3j6" alt="PrudentHR Logo" loading="lazy">
+                <img src="https://www.dropbox.com/scl/fi/1qi9htm8yezski7ihs34q/Screenshot-2025-03-03-204508.png?rlkey=is8rgvexy7ex3h62mqtn5t3j6&raw=1" alt="PrudentHR Logo" loading="lazy">
                 <h1>Prudent<span>HR</span></h1>
             </div>
             <nav id="nav">
@@ -858,7 +1110,7 @@
                     <li><a href="#about">About</a></li>
                     <li>
     <a href="hr-saathi.html" 
-       target="_blank" 
+       target="_parent"
        style="color:#e74c3c;font-weight:700">
        HR Saathi 🔥
     </a>
@@ -887,11 +1139,11 @@
             </div>
         </div>
     </section>
-    <section style="background:#fff;padding:30px 0;text-align:center">
-  <p style="opacity:0.7">
+        <section style="background:#fff;padding:30px 0;text-align:center">
+  <p style="opacity:0.7;font-size: 20px;font-weight: bold;">
     Trusted by growing businesses across India • HR Compliance • Recruitment • Advisory
   </p>
-</section>
+        </section>
 
 
     <!-- About Section -->
@@ -1038,7 +1290,20 @@
    data-service="Talent Acquisition">
    Learn More <i class="fas fa-arrow-right"></i>
 </a>
+                            <script>
+                                // Add this inside your DOMContentLoaded listener
+const serviceLinks = document.querySelectorAll('.service-link');
+const serviceSelect = document.querySelector('select[name="service"]');
 
+serviceLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const selectedService = link.getAttribute('data-service');
+        if (serviceSelect) {
+            serviceSelect.value = selectedService;
+        }
+    });
+});
+                            </script>
                     </div>
                 </div>
             </div>
@@ -1101,10 +1366,19 @@
                     <h4 class="client-name">Yogesh Rawat</h4>
                     <p class="client-position">CPO ,Vardhman Industries Pvt Ltd</p>
                 </div>
+                <div class="testimonial">
+                    <div class="client-img">
+                        <img src="images/t4.jpeg" alt="Rajesh Sharma">
+                    </div>
+                    <p class="client-quote">"The team at Prudent HR Consultancy provided exceptional support in navigating complex HR challenges. Their strategic insights and practical solutions have significantly improved our organizational efficiency."</p>
+                    <h4 class="client-name">Anjali Sharma</h4>
+                    <p class="client-position">Lead Hr , Rajendra Nath Pvt Ltd</p>
+                </div>
                 <div class="testimonial-nav">
                     <div class="testimonial-dot active" data-slide="0"></div>
                     <div class="testimonial-dot" data-slide="1"></div>
                     <div class="testimonial-dot" data-slide="2"></div>
+                    <div class="testimonial-dot" data-slide="3"></div>
                 </div>
             </div>
         </div>
@@ -1172,13 +1446,11 @@
 
       <!-- CONTACT FORM -->
       <div class="contact-form">
-        <h3>Request a Free HR Consultation</h3>
+        <h3>Book a Free HR Consultation</h3>
 
         <form
           id="contactForm"
-          action="https://formsubmit.co/prudenthr001@gmail.com"
-          method="POST"
-        >
+          >
           <!-- FORMSUBMIT SETTINGS -->
           <input type="text" name="company" style="display:none">
 
@@ -1262,14 +1534,22 @@
                 <div class="footer-col">
                     <h4>About PrudentHR</h4>
                     <p>PrudentHR is a leading human resource consulting firm dedicated to helping businesses optimize their workforce and achieve sustainable growth.</p>
-                    <div class="social-links">
-    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-    
-    <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-    
-    <a href="https://www.linkedin.com/company/prudenthr-consultancy" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-    
-    <a href="https://www.instagram.com/prudenthrconsultancy/" class="instagram"><i class="fab fa-instagram"></i></a>
+                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="social-side-bar">
+    <a href="https://whatsapp.com/channel/0029VbBzZxU8kyyLspeB293M" class="social-icon whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="tooltip">WhatsApp</span>
+    </a>
+</html>
+    <a href="https://www.linkedin.com/company/prudenthr-consultancy/" class="social-icon linkedin" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+        <span class="tooltip">LinkedIn</span>
+    </a>
+    <a href="https://www.instagram.com/prudenthrconsultancy/" class="social-icon instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+        <span class="tooltip">Instagram</span>
+    </a>
 </div>
                 </div>
                 <div class="footer-col">
@@ -1307,7 +1587,7 @@
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>Prudent_hr@outlook.com</span>
+                            <span>support@prudenthr.in</span>
                         </li>
                         <li>
                             <i class="fas fa-phone-alt"></i>
@@ -1332,149 +1612,171 @@
 
 
     </footer>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-// 🔥 Firebase Config
-const firebaseConfig = {
-  apiKey: "AIzaSyDwUE02BSa94E9DqgqvXuG_g2itD2ZbkZk",
-  authDomain: "prudenthr-eeeba.firebaseapp.com",
-  projectId: "prudenthr-eeeba"
-};
-
-// 🔥 Init Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// 📩 Form Elements
-const form = document.getElementById("contactForm");
-const btn = form.querySelector("button");
-const phoneInput = form.querySelector("input[name='phone']");
-const phoneError = phoneInput.nextElementSibling;
-
-// 🚀 Submit Handler
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (form.company.value) return;
-
-
-  const phone = phoneInput.value.trim();
-  if (phone && !/^[6-9]\d{9}$/.test(phone)) {
-    phoneError.innerText = "Enter a valid 10-digit Indian mobile number";
-    phoneError.style.display = "block";
-    return;
-  } else {
-    phoneError.style.display = "none";
-  }
-
-  // Button UI
-  btn.innerText = "Sending...";
-  btn.disabled = true;
-
-  try {
-    // 1️⃣ Save Lead to Firestore
-    await addDoc(collection(db, "leads"), {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      service: form.service.value,
-      message: form.message.value.trim(),
-      status: "New",
-      source: "Website",
-      createdAt: serverTimestamp()
-    });
-
-    // 2️⃣ Send Email via FormSubmit (non-blocking)
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form)
-    }).catch(err => console.warn("FormSubmit error:", err));
-
-    // 3️⃣ Redirect to Thank You Page
-    window.location.href = "https://prudenthr.in/thank-you.html";
-
-  } catch (error) {
-    console.error("Submission error:", error);
-    alert("Something went wrong. Please try again.");
-
-    // Reset button if error
-    btn.innerText = "Send Message";
-    btn.disabled = false;
-  }
-});
-
-document.querySelectorAll(".service-link").forEach(link => {
-    link.addEventListener("click", () => {
-      const service = link.getAttribute("data-service");
-
-      // Delay to ensure contact section loads
-      setTimeout(() => {
-        const serviceSelect = document.querySelector(
-          "#contactForm select[name='service']"
-        );
-        if (serviceSelect) {
-          serviceSelect.value = service;
-        }
-      }, 300);
-    });
-  });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const testimonials = document.querySelectorAll(".testimonial");
-  const dots = document.querySelectorAll(".testimonial-dot");
-
-  let currentIndex = 0;
-  let interval;
-
-  function showTestimonial(index) {
-    testimonials.forEach((t, i) => {
-      t.classList.toggle("active", i === index);
-    });
-
-    dots.forEach((d, i) => {
-      d.classList.toggle("active", i === index);
-    });
-
-    currentIndex = index;
-  }
-
-  function nextTestimonial() {
-    const nextIndex = (currentIndex + 1) % testimonials.length;
-    showTestimonial(nextIndex);
-  }
-
-  function startAutoSlide() {
-    interval = setInterval(nextTestimonial, 4000); // 4 seconds
-  }
-
-  function stopAutoSlide() {
-    clearInterval(interval);
-  }
-
-  // Dot click handling
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      stopAutoSlide();
-      showTestimonial(index);
-      startAutoSlide();
-    });
-  });
-
-  // Start slider
-  showTestimonial(0);
-  startAutoSlide();
-});
-</script>
 
 
 </body>
+<script type="module">
+/* --- 1. FIREBASE INITIALIZATION --- */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { 
+    getFirestore, collection, addDoc, serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { 
+    getAuth, signInWithEmailAndPassword, onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDltU_9SEXm90Y82Ndx3_Ug74CK4EA_bVQ",
+    authDomain: "prudenthr-eeeba.firebaseapp.com",
+    projectId: "prudenthr-eeeba",
+    storageBucket: "prudenthr-eeeba.firebasestorage.app",
+    messagingSenderId: "316130454247",
+    appId: "1:316130454247:web:82b61dd2068c6cf029d042",
+    measurementId: "G-9MFEWVRCTP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    /* --- 2. MOBILE MENU LOGIC --- */
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navUl = document.querySelector('nav ul');
+
+    if (menuBtn && navUl) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navUl.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if(icon) {
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            }
+        });
+
+        navUl.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                if(icon) icon.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+    }
+
+    /* --- 3. SECURE ADMIN ACCESS (Step 3) --- */
+    // If you are on the admin page, this checks if you are logged in
+    if (window.location.pathname.includes('admin.html')) {
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                const pass = prompt("Enter Admin Password:");
+                // Use your admin email here
+                signInWithEmailAndPassword(auth, "admin@prudenthr.com", pass)
+                    .catch(() => {
+                        alert("Unauthorized");
+                        window.location.href = "index.html";
+                    });
+            }
+        });
+    }
+
+    /* --- 4. POPUP & ACCESS CONTROL --- */
+    const overlay = document.getElementById('lock-overlay');
+    const closeBtn = document.getElementById('close-popup');
+
+    if(overlay) {
+        overlay.style.display = 'none';
+        overlay.style.opacity = '0';
+        
+        setTimeout(() => {
+            const hasAccess = localStorage.getItem('prudent_access_granted');
+            const hasDismissed = sessionStorage.getItem('popup_dismissed');
+
+            if (hasAccess !== 'true' && hasDismissed !== 'true') {
+                overlay.style.display = 'flex';
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    overlay.classList.add('active');
+                }, 50);
+                document.body.style.overflow = 'hidden';
+            }
+        }, 5000); 
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 600);
+            sessionStorage.setItem('popup_dismissed', 'true');
+        });
+    }
+
+    /* --- 5. CONTACT FORM HANDLER --- */
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector("#submitBtn");
+            const phoneInput = contactForm.querySelector("input[name='phone']");
+            const phoneRegex = /^[6-9]\d{9}$/;
+
+            if (phoneInput.value && !phoneRegex.test(phoneInput.value)) {
+                alert("Please enter a valid 10-digit mobile number starting with 6-9.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            try {
+                await addDoc(collection(db, "leads"), {
+                    name: contactForm.name.value.trim(),
+                    email: contactForm.email.value.trim(),
+                    phone: contactForm.phone.value.trim(),
+                    service: contactForm.service.value,
+                    message: contactForm.message.value.trim(),
+                    status: "New",
+                    source: "Website_Contact_Form",
+                    createdAt: serverTimestamp()
+                });
+                window.location.href = "thank-you.html";
+            } catch (error) {
+                console.error("Firebase Error:", error);
+                btn.disabled = false;
+                btn.innerText = "Send Message";
+                alert("Error sending message. Check security rules.");
+            }
+        });
+    }
+
+    /* --- 6. TESTIMONIAL SLIDER --- */
+    const testimonials = document.querySelectorAll(".testimonial");
+    const dots = document.querySelectorAll(".testimonial-dot");
+    let currentIndex = 0;
+
+    if (testimonials.length > 0) {
+        const showSlide = (index) => {
+            testimonials.forEach((t, i) => t.classList.toggle("active", i === index));
+            dots.forEach((d, i) => d.classList.toggle("active", i === index));
+            currentIndex = index;
+        };
+
+        const nextSlide = () => showSlide((currentIndex + 1) % testimonials.length);
+        let sliderInterval = setInterval(nextSlide, 4000);
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener("click", () => {
+                clearInterval(sliderInterval);
+                showSlide(i);
+                sliderInterval = setInterval(nextSlide, 4000);
+            });
+        });
+        showSlide(0);
+    }
+});
+</script>
 </html>

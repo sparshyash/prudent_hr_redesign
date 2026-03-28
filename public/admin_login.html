@@ -67,7 +67,7 @@
   <h2>Admin Login</h2>
   <input type="email" id="email" placeholder="Admin Email" required>
   <input type="password" id="password" placeholder="Password" required>
-  <button onclick="login()">Login</button>
+  <button id="loginBtn">Login</button>
   <p class="error" id="error"></p>
 </div>
 
@@ -75,32 +75,48 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDwUE02BSa94E9DqgqvXuG_g2itD2ZbkZk",
-  authDomain: "prudenthr-eeeba.firebaseapp.com",
-  projectId: "prudenthr-eeeba",
-  storageBucket: "prudenthr-eeeba.firebasestorage.app",
-  messagingSenderId: "316130454247",
-  appId: "1:316130454247:web:82b61dd2068c6cf029d042"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyDltU_9SEXm90Y82Ndx3_Ug74CK4EA_bVQ", // Your New Key
+    authDomain: "prudenthr-eeeba.firebaseapp.com",
+    projectId: "prudenthr-eeeba",
+    storageBucket: "prudenthr-eeeba.firebasestorage.app",
+    messagingSenderId: "316130454247",
+    appId: "1:316130454247:web:82b61dd2068c6cf029d042",
+    measurementId: "G-9MFEWVRCTP"
+  };
 
-
+  // Initialize
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  window.login = async () => {
+  // Use an Event Listener instead of onclick=""
+  document.getElementById("loginBtn").addEventListener("click", async () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const errorEl = document.getElementById("error");
+    const btn = document.getElementById("loginBtn");
+
+    errorEl.textContent = ""; // Clear old errors
+    btn.textContent = "Verifying...";
+    btn.disabled = true;
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      // Success! Redirect to your dashboard
       window.location.href = "admin.html";
     } catch (err) {
-      errorEl.textContent = "Invalid admin credentials";
+      console.error(err.code);
+      btn.textContent = "Login";
+      btn.disabled = false;
+      
+      // Specific error handling
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+          errorEl.textContent = "Invalid admin credentials";
+      } else {
+          errorEl.textContent = "Error: " + err.message;
+      }
     }
-  };
+  });
 </script>
-
 </body>
 </html>
