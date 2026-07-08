@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PrudentHR is a strategic HR consulting firm providing recruitment, compliance, training and HR technology solutions for growing businesses.">
+    <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PrudentHR is a strategic HR consulting firm providing recruitment, compliance, training and HR technology solutions for growing businesses.">
 <meta name="keywords" content="HR consultancy, recruitment, HR compliance, training, HR consulting India">
 <meta name="author" content="PrudentHR">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.prudenthr.in">
 <meta name="google-site-verification" content="VFo-rIBeUBCpj8X7kiRBMp652_g-m0U2jzm9WZBaRIc" />
-
+<model-viewer src="assets/bullseye.glb" auto-rotate camera-controls disable-zoom></model-viewer>
 
     <title>PrudentHR - Strategic HR Consulting Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,8 +22,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-</head>
-<style>
+    </head>
+    <style>
         /* Global Styles */
         :root {
             --primary-color: #2c3e50;
@@ -82,9 +82,9 @@
 
 
         .btn.loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
+            opacity: 0.7;
+            pointer-events: none;
+        }
 
         .btn:hover {
             background: var(--accent-color);
@@ -134,14 +134,14 @@
         
 
         .reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.6s ease;
-}
-.reveal.active {
-  opacity: 1;
-  transform: none;
-}
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.6s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: none;
+        }
 
 
 
@@ -174,12 +174,12 @@
         }
         
         .logo img {
-    height: 60px;
-    width: auto; /* Ensures aspect ratio is maintained */
-    display: block; /* Prevents inline alignment issues */
-    object-fit: contain; /* Keeps logo from stretching */
-    min-width: 50px; /* Forces a minimum visibility */
-}
+        height: 60px;
+        width: auto; /* Ensures aspect ratio is maintained */
+        display: block; /* Prevents inline alignment issues */
+        object-fit: contain; /* Keeps logo from stretching */
+        min-width: 50px; /* Forces a minimum visibility */
+        }
         
         .logo h1 {
             font-size: 24px;
@@ -245,12 +245,13 @@
     text-align: center;
     color: white;
     position: relative;
+    
         }
 
         .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px; /* Prevents text hitting edges on mobile */
+         max-width: 800px;
+         margin: 0 auto;
+            padding: 0 20px; /* Prevents text hitting edges on mobile */
         }
         
         .hero h1 {
@@ -367,16 +368,20 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: rotateX(10deg) rotateY(-10deg) translateZ(20px);
         }
         
         .service-img {
             height: 200px;
             overflow: hidden;
+            transform: translateZ(50px); /* Makes the text pop out more than the card */
         }
         
         .service-img img {
@@ -1040,23 +1045,23 @@
 }
 
 
-</style>
+    </style>
 
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6X0JJ79X0D"></script>
-<script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X0JJ79X0D"></script>
+    <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-6X0JJ79X0D');
-</script>
+    </script>
 
-<body>
+    <body>
 
     <!-- POP UP-->
-<section>
+    <section>
   <div id="lock-overlay">
     <div class="cookie-popup">
         <div class="popup-header">
@@ -1095,9 +1100,9 @@
         </form>
     </div>
 </div>
-</section>
+    </section>
     <!-- Header -->
-    <header id="header">
+        <header id="header">
         <div class="container header-container">
             <div class="logo">
                 
@@ -1124,7 +1129,7 @@
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-    </header>
+        </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1140,14 +1145,14 @@
         </div>
     </section>
         <section style="background:#fff;padding:30px 0;text-align:center">
-  <p style="opacity:0.7;font-size: 20px;font-weight: bold;">
-    Trusted by growing businesses across India • HR Compliance • Recruitment • Advisory
-  </p>
+            <p style="opacity:0.7;font-size: 20px;font-weight: bold;">
+                Trusted by growing businesses across India • HR Compliance • Recruitment • Advisory
+            </p>
         </section>
 
 
     <!-- About Section -->
-    <section class="about" id="about">
+        <section class="about" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>About PrudentHR</h2>
@@ -1193,7 +1198,7 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
 
     <!-- Services Section -->
     <section class="services" id="services">
@@ -1386,27 +1391,27 @@ serviceLinks.forEach(link => {
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-  <div class="container">
-    <div class="section-title">
-      <h2>Get In Touch</h2>
-      <p>
-        Ready to transform your HR function? Contact us today to discuss how we
-        can support your organization's growth and success.
-      </p>
-    </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>
+                    Ready to transform your HR function? Contact us today to discuss how we
+                    can support your organization's growth and success.
+                </p>
+        </div>
 
-    <div class="contact-container">
-      <!-- CONTACT INFO -->
-      <div class="contact-info">
-        <h3>Contact Information</h3>
+        <div class="contact-container">
+            <!-- CONTACT INFO -->
+            <div class="contact-info">
+                <h3>Contact Information</h3>
 
-        <div class="info-item">
-          <div class="info-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="info-text">
-            <h4>Location</h4>
-            <p>HW 01, Sector 70 <br />Noida - U.P - 201301</p>
+                <div class="info-item">
+                <div class="info-icon">
+                     <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-text">
+                    <h4>Location</h4>
+                    <p>HW 01, Sector 70 <br />Noida - U.P - 201301</p>
           </div>
         </div>
 
@@ -1541,16 +1546,16 @@ serviceLinks.forEach(link => {
         <i class="fab fa-whatsapp"></i>
         <span class="tooltip">WhatsApp</span>
     </a>
-</html>
-    <a href="https://www.linkedin.com/company/prudenthr-consultancy/" class="social-icon linkedin" target="_blank">
-        <i class="fab fa-linkedin-in"></i>
-        <span class="tooltip">LinkedIn</span>
-    </a>
-    <a href="https://www.instagram.com/prudenthrconsultancy/" class="social-icon instagram" target="_blank">
-        <i class="fab fa-instagram"></i>
-        <span class="tooltip">Instagram</span>
-    </a>
-</div>
+
+                    <a href="https://www.linkedin.com/company/prudenthr-consultancy/" class="social-icon linkedin" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span class="tooltip">LinkedIn</span>
+                    </a>
+                    <a href="https://www.instagram.com/prudenthrconsultancy/" class="social-icon instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span class="tooltip">Instagram</span>
+                    </a>
+                </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
@@ -1562,9 +1567,9 @@ serviceLinks.forEach(link => {
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="admin_login.html" style="opacity:0.4;font-size:12px">
-  Admin Login
-</a>
-</li>
+                                Admin Login
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1602,20 +1607,20 @@ serviceLinks.forEach(link => {
                 <p>&copy; 2025 PrudentHR. All Rights Reserved.</p>
             </div>
         </div>
-<p style="margin-top:8px;font-size:12px;opacity:0.7">
-  Developed & Maintained by 
-  <a href="https://www.linkedin.com/in/sparsh-garg-733113209" target="_blank" style="color:#3498db;">
-    Prudent Tech
-  </a>
-</p>
+            <p style="margin-top:8px;font-size:12px;opacity:0.7">
+                Developed & Maintained by 
+                <a href="https://www.linkedin.com/in/sparsh-garg-733113209" target="_blank" style="color:#3498db;">
+                Prudent Tech
+                </a>
+            </p>
 
 
 
     </footer>
 
 
-</body>
-<script type="module">
+    </body>
+    <script type="module">
 /* --- 1. FIREBASE INITIALIZATION --- */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { 
@@ -1778,5 +1783,33 @@ document.addEventListener("DOMContentLoaded", () => {
         showSlide(0);
     }
 });
-</script>
+
+
+// Add Three.js via CDN or NPM
+import * as THREE from 'three';
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#canvas3d'), alpha: true });
+
+// Create a 3D geometry that fits your "Strategic HR" theme
+const geometry = new THREE.IcosahedronGeometry(2, 1);
+const material = new THREE.MeshStandardMaterial({ color: 0x3498db, wireframe: true });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// Lighting to make it pop
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 5, 5);
+scene.add(light);
+
+camera.position.z = 5;
+
+function animate() {
+    requestAnimationFrame(animate);
+    mesh.rotation.y += 0.005;
+    renderer.render(scene, camera);
+}
+animate();
+    </script>
 </html>
